@@ -15,10 +15,40 @@ class DisciplinaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $disciplinas = Disciplina::paginate(10);
-        return view('disciplinas.index', compact('disciplinas'));
+        $cursos = Curso::all();
+        $filterByCurso = $request->curso ?? '';
+        $filterByAno = $request->ano ?? '';
+        $filterBySemestre = $request->semestre ?? '';
+        $disciplinaQuery = Disciplina::query();
+        if ($filterByCurso !== '') {
+            $disciplinaQuery->where('curso', $filterByCurso);
+        }
+        if ($filterByAno !== '') {
+            $disciplinaQuery->where('ano', $filterByAno);
+        }
+        if ($filterBySemestre !== '') {
+            $disciplinaQuery->where('semestre', $filterBySemestre);
+        }
+        $disciplinas = $disciplinaQuery->paginate(10);
+        return view('disciplinas.index', compact('disciplinas', 'cursos', 'filterByCurso', 'filterByAno', 'filterBySemestre'));
+    }
+
+    public function minhasDisciplinas(Request $request): View
+    {
+        $tipo = 'O';
+        if ($request->user()) {
+            $tipo = $request->user()->tipo ?? 'O';
+        }
+        if ($tipo == 'D') {
+            $disciplinas = $request->user()->docente->disciplinas;
+        } elseif ($tipo == 'A') {
+            $disciplinas = $request->user()->aluno->disciplinas;
+        } else {
+            $disciplinas = null;
+        }
+        return view('disciplinas.minhas', compact('disciplinas', 'tipo'));
     }
 
     /**
@@ -51,12 +81,20 @@ class DisciplinaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Disciplina $disciplina): View
+    public function show(Request $request, Disciplina $disciplina): View
     {
         $cursos = Curso::all();
+        // Following line ensures that $showDetail is either alunos or docentes
+        $showDetail = $request->query('show-detail') == 'alunos' ? 'alunos' : 'docentes';
+        if ($showDetail == 'docentes') {
+            $disciplina->load('docentes', 'docentes.user', 'docentes.departamentoRef');
+        } else {
+            $disciplina->load('alunos', 'alunos.user', 'alunos.cursoRef');
+        }
         return view('disciplinas.show')
             ->with('disciplina', $disciplina)
-            ->with('cursos', $cursos);
+            ->with('cursos', $cursos)
+            ->with('showDetail', $showDetail);
     }
 
     /**
@@ -92,9 +130,11 @@ class DisciplinaController extends Controller
             $totalAlunos = DB::scalar('select count(*) from alunos_disciplinas where disciplina_id = ?', [$disciplina->id]);
             if ($totalDocentes == 0 && $totalAlunos == 0) {
                 $disciplina->delete();
-                $alertType = 'success';
                 $htmlMessage = "Disciplina #{$disciplina->id}
                         <strong>\"{$disciplina->nome}\"</strong> foi apagada com sucesso!";
+                return redirect()->route('disciplinas.index')
+                    ->with('alert-msg', $htmlMessage)
+                    ->with('alert-type', 'success');
             } else {
                 $url = route('disciplinas.show', ['disciplina' => $disciplina]);
                 $alertType = 'warning';
@@ -126,7 +166,7 @@ class DisciplinaController extends Controller
                         <strong>\"{$disciplina->nome}\"</strong> porque ocorreu um erro!";
             $alertType = 'danger';
         }
-        return redirect()->route('disciplinas.index')
+        return back()
             ->with('alert-msg', $htmlMessage)
             ->with('alert-type', $alertType);
     }

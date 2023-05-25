@@ -22,8 +22,7 @@
     @enderror
 </div>
 <div class="mb-3 form-floating">
-    <select class="form-control @error('curso') is-invalid @enderror" name="curso" id="inputCurso"
-        {{ $disabledStr }}>
+    <select class="form-select @error('curso') is-invalid @enderror" name="curso" id="inputCurso" {{ $disabledStr }}>
         @foreach ($cursos as $curso)
             <option {{ $curso->abreviatura == old('curso', $disciplina->curso) ? 'selected' : '' }}
                 value="{{ $curso->abreviatura }}">
@@ -48,8 +47,17 @@
     @enderror
 </div>
 <div class="mb-3 form-floating">
-    <input type="text" class="form-control @error('semestre') is-invalid @enderror" name="semestre"
-        id="inputSemestre" {{ $disabledStr }} value="{{ old('semestre', $disciplina->semestre) }}">
+    <select class="form-select @error('semestre') is-invalid @enderror" name="semestre" id="inputSemestre"
+        {{ $disabledStr }}>
+        <option {{ old('semestre', $disciplina->semestre) == 0 ? 'selected' : '' }} value="0">Anual
+        </option>
+        <option
+            {{ old('semestre', $disciplina->semestre) == 1 || old('semestre', $disciplina->semestre) == '' ? 'selected' : '' }}
+            value="1">1º
+        </option>
+        <option {{ old('semestre', $disciplina->semestre) == 2 ? 'selected' : '' }} value="2">2º
+        </option>
+    </select>
     <label for="inputSemestre" class="form-label">Semestre</label>
     @error('semestre')
         <div class="invalid-feedback">
@@ -78,7 +86,7 @@
     @enderror
 </div>
 <div class="mb-3">
-    <div class="form-check form-switch">
+    <div class="form-check form-switch" {{ $disabledStr }}>
         <input type="hidden" name="opcional" value="0">
         <input type="checkbox" class="form-check-input @error('opcional') is-invalid @enderror" name="opcional"
             id="inputOpcional" {{ $disabledStr }} {{ old('opcional', $disciplina->opcional) ? 'checked' : '' }}

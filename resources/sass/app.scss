@@ -1,3 +1,9 @@
+// Fonts
+// @import url('https://fonts.bunny.net/css?family=Nunito');
+
+// // Variables
+// @import 'variables';
+
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
@@ -11,9 +17,17 @@ table th.button-icon-col, table td.button-icon-col {
     padding-right: 0px;
 }
 
-.form-control[disabled] {
+.form-control[disabled] , .form-select[disabled]{
     background-color: white !important;
     border-style: dashed;
+}
+
+.form-check-input[disabled] {
+    opacity: .7;
+}
+.form-check[disabled] label{
+    color: rgb(33, 37, 41);
+    opacity: 1 !important;
 }
 
 textarea.form-control{

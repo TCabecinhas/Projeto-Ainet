@@ -47,8 +47,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="/img/avatar_unknown.png" alt="Avatar" class="bg-dark rounded-circle" width="45"
-                            height="45">
+                        <img src="{{ Auth::user()->fullPhotoUrl }}" alt="Avatar" class="bg-dark rounded-circle"
+                            width="45" height="45">
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -81,11 +81,13 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Dashboard
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{ Route::currentRouteName() == 'cursos.plano_curricular' ? 'active' : '' }}"
+                            href="{{ route('cursos.plano_curricular', ['curso' => 'EI']) }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Planos Curriculares
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{ Route::currentRouteName() == 'alunos.index' ? 'active' : '' }}"
+                            href="{{ route('alunos.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
                             Alunos
                         </a>
@@ -116,23 +118,33 @@
                         <div class="collapse" id="collapseRecursosHumanos" aria-labelledby="headingTwo"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Departamentos</a>
-                                <a class="nav-link" href="#">Docentes</a>
+                                <a class="nav-link {{ Route::currentRouteName() == 'departamentos.index' ? 'active' : '' }}"
+                                    href="{{ route('departamentos.index') }}">Departamentos</a>
+                                <a class="nav-link {{ Route::currentRouteName() == 'docentes.index' ? 'active' : '' }}"
+                                    href="{{ route('docentes.index') }}">Docentes</a>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Candidaturas</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{ Route::currentRouteName() == 'candidaturas.create' ? 'active' : '' }}"
+                            href="{{ route('candidaturas.create') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-upload"></i></div>
                             Enviar candidatura
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{ Route::currentRouteName() == 'candidaturas.index' ? 'active' : '' }}"
+                            href="{{ route('candidaturas.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-envelope"></i></div>
                             Candidaturas
                         </a>
                         <div class="sb-sidenav-menu-heading">Espaço Privado</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link {{ Route::currentRouteName() == 'disciplinas.minhas' ? 'active' : '' }}"
+                            href="{{ route('disciplinas.minhas') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-text"></i></div>
                             Minhas disciplinas
+                        </a>
+                        <a class="nav-link {{ Route::currentRouteName() == 'cart.show' ? 'active' : '' }}"
+                            href="{{ route('cart.show') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                            Carrinho
                         </a>
                     </div>
                 </div>

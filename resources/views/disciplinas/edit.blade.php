@@ -13,13 +13,14 @@
 @endsection
 
 @section('main')
-    <form method="POST" action="{{ route('disciplinas.update', ['disciplina' => $disciplina]) }}">
+    <form novalidate class="needs-validation" method="POST"
+        action="{{ route('disciplinas.update', ['disciplina' => $disciplina]) }}">
         @csrf
         @method('PUT')
         @include('disciplinas.shared.fields')
         <div class="my-4 d-flex justify-content-end">
             <button type="submit" class="btn btn-primary" name="ok">Guardar Alterações</button>
-            <a href="{{ route('disciplinas.edit', ['disciplina' => $disciplina]) }}"
+            <a href="{{ route('disciplinas.show', ['disciplina' => $disciplina]) }}"
                 class="btn btn-secondary ms-3">Cancelar</a>
         </div>
     </form>

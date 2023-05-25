@@ -40,16 +40,22 @@
                     <td class="button-icon-col"><a href="{{ route('cursos.edit', ['curso' => $curso]) }}"
                             class="btn btn-dark"><i class="fas fa-edit"></i></a></td>
                     <td class="button-icon-col">
-                        <form method="POST" action="{{ route('cursos.destroy', ['curso' => $curso]) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" name="delete" class="btn btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
+                        <button type="button" name="delete" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#confirmationModal"
+                            data-msgLine1="Quer realmente apagar o curso <strong>&quot;{{ $curso->nome }}&quot;</strong>?"
+                            data-action="{{ route('cursos.destroy', ['curso' => $curso]) }}">
+                            <i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
+    @include('shared.confirmationDialog', [
+        'title' => 'Apagar curso',
+        'msgLine1' => 'Clique no botão "Apagar" para confirmar a operação',
+        'msgLine2' => '',
+        'confirmationButton' => 'Apagar',
+        'formMethod' => 'DELETE',
+    ])
 @endsection

@@ -19,7 +19,7 @@
         @include('cursos.shared.fields')
         <div class="my-4 d-flex justify-content-end">
             <button type="submit" class="btn btn-primary" name="ok">Guardar Alterações</button>
-            <a href="{{ route('cursos.edit', ['curso' => $curso]) }}" class="btn btn-secondary ms-3">Cancelar</a>
+            <a href="{{ route('cursos.show', ['curso' => $curso]) }}" class="btn btn-secondary ms-3">Cancelar</a>
         </div>
     </form>
 @endsection
