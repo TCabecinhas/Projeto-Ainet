@@ -91,6 +91,11 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
                             Alunos
                         </a>
+                        <a class="nav-link {{ Route::currentRouteName() == 'categorias.index' ? 'active' : '' }}"
+                            href="{{ route('categorias.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
+                            Categorias
+                        </a>
                         <div class="sb-sidenav-menu-heading">Gestão</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseCurricular" aria-expanded="false"

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\DepartamentoController;
@@ -26,6 +27,8 @@ Route::resource('alunos', AlunoController::class);
 Route::delete('alunos/{aluno}/foto', [AlunoController::class, 'destroy_foto'])->name('alunos.foto.destroy');
 
 Route::resource('candidaturas', CandidaturaController::class)->only(['index', 'show', 'create', 'store']);
+
+Route::resource('categorias', 'CategoriaController');
 
 Auth::routes();
 
