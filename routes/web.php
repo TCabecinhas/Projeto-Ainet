@@ -45,7 +45,3 @@ Route::post('cart', [CartController::class, 'store'])->name('cart.store');
 
 // Clear the cart:
 Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
