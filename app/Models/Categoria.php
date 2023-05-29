@@ -10,5 +10,8 @@ class Categoria extends Model
     use SoftDeletes;
 
     protected $table = 'categories';
+    
     protected $fillable = ['name'];
+    
+    public $timestamps = false;
 }
