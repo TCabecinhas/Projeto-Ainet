@@ -9,6 +9,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CandidaturaController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoriaController;
 
 Route::view('/', 'home')->name('root');
 
@@ -28,7 +29,7 @@ Route::delete('alunos/{aluno}/foto', [AlunoController::class, 'destroy_foto'])->
 
 Route::resource('candidaturas', CandidaturaController::class)->only(['index', 'show', 'create', 'store']);
 
-Route::resource('categorias', 'CategoriaController');
+Route::resource('categorias', CategoriaController::class);
 
 Auth::routes();
 
