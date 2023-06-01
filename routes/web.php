@@ -12,6 +12,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ImageController;
 
 
 Route::view('/', 'home')->name('root');
@@ -41,6 +42,8 @@ Route::get('colors/{color}', [ColorController::class, 'show'])->name('colors.sho
 Route::put('colors/{color}', [ColorController::class, 'update'])->name('colors.update');
 
 Route::resource('prices', PriceController::class);
+
+Route::resource('images', ImageController::class);
 
 Auth::routes();
 

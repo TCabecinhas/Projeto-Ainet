@@ -16,4 +16,3 @@ class Color extends Model
     public $timestamps = false;
 
 }
-
