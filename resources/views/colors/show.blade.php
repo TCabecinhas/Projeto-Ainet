@@ -7,7 +7,7 @@
     <p>ID: {{ $color->code }}</p>
     <p>Nome: {{ $color->name }}</p>
 
-    <a href="{{ route('colors.edit', $color->code) }}" class="btn btn-primary">Editar</a>
+    <a href="{{ route('colors.edit', ['code' => $color->code]) }}" class="btn btn-primary">Editar</a>
     <form action="{{ route('colors.destroy', $color->code) }}" method="POST" style="display: inline-block;">
         @csrf
         @method('DELETE')

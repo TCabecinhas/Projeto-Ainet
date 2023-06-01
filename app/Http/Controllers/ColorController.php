@@ -56,7 +56,7 @@ class ColorController extends Controller
      */
     public function update(Request $request, Color $color)
     {
-        $color->update($request->validated());
+        $color->update($request->only(['name']));
 
         return redirect()->route('colors.index')
             ->with('success', 'Color atualizada com sucesso.');

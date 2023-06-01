@@ -10,7 +10,10 @@ class Color extends Model
     use SoftDeletes;
 
     protected $primaryKey = 'code';
+    public $incrementing = false;    
     protected $table = 'colors';
     protected $fillable = ['name'];
+    public $timestamps = false;
+
 }
 
