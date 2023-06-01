@@ -10,8 +10,11 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
-                <th>Ações</th>
+                <th>unit_price_catalog</th>
+                <th>unit_price_own</th>
+                <th>unit_price_price_catalog_discount</th>
+                <th>unit_price_price_own_discount</th>
+                <th>qty_discount</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +29,7 @@
                     <td>
                         <a href="{{ route('prices.show', $price->id) }}" class="btn btn-info">Detalhes</a>
                         <a href="{{ route('prices.edit', $price->id) }}" class="btn btn-primary">Editar</a>
-                        <form action="{{ route('prices.destroy', $price->id) }}" method="POST"
-                            style="display: inline-block;">
+                        <form action="{{ route('prices.destroy', $price->id) }}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Excluir</button>

@@ -14,7 +14,8 @@ class PriceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'unit_price_catalog' => 'required',
+            'unit_price_own' => 'required',
         ];
     }
 }

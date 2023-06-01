@@ -56,7 +56,12 @@ class PriceController extends Controller
      */
     public function update(Request $request, Price $price)
     {
-        $price->update($request->validated());
+        $validatedData = $request->validate([
+            'unit_price_catalog' => 'required',
+            'unit_price_owner' => 'required'
+        ]);
+    
+        $price->update($validatedData);
 
         return redirect()->route('prices.index')
             ->with('success', 'Price atualizada com sucesso.');

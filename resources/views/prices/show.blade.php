@@ -5,7 +5,7 @@
     <h1>Price: {{ $price->name }}</h1>
 
     <p>ID: {{ $price->id }}</p>
-    <p>Nome: {{ $price->name }}</p>
+    <p>Teste: {{ $price->name }}</p>
 
     <a href="{{ route('prices.edit', $price->id) }}" class="btn btn-primary">Editar</a>
     <form action="{{ route('prices.destroy', $price->id) }}" method="POST" style="display: inline-block;">

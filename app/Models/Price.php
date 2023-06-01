@@ -9,6 +9,7 @@ class Price extends Model
 {
 
     protected $table = 'prices';
-    protected $fillable = ['name'];
+    protected $fillable = ['unit_price_catalog'];
+    public $timestamps = false;
     
 }
