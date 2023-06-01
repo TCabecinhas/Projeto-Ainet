@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Price extends Model
 {
-    use SoftDeletes;
 
-    protected $table = 'price';
+    protected $table = 'prices';
     protected $fillable = ['name'];
+    
 }
