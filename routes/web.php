@@ -10,6 +10,7 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CandidaturaController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ColorController;
 
 Route::view('/', 'home')->name('root');
 
@@ -31,6 +32,12 @@ Route::resource('candidaturas', CandidaturaController::class)->only(['index', 's
 
 Route::resource('categorias', CategoriaController::class);
 
+Route::resource('colors', ColorController::class);
+
+Route::get('colors/{color}', [ColorController::class, 'show'])->name('colors.show');
+
+Route::put('colors/{color}', [ColorController::class, 'update'])->name('colors.update');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -49,3 +56,6 @@ Route::post('cart', [CartController::class, 'store'])->name('cart.store');
 
 // Clear the cart:
 Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
+
+
+

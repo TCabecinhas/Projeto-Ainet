@@ -96,6 +96,11 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
                             Categorias
                         </a>
+                        <a class="nav-link {{ Route::currentRouteName() == 'colors.index' ? 'active' : '' }}"
+                            href="{{ route('colors.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
+                            Colors
+                        </a>
                         <div class="sb-sidenav-menu-heading">Gestão</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseCurricular" aria-expanded="false"

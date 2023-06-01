@@ -150,7 +150,7 @@ class OrdersSeeder extends Seeder
             $id_tshirtImage = $usaPropria ? $faker->randomElement($tshirtImageProprias) : $faker->randomElement($this->tshirtImages_catalog);
             $qty = $faker->randomElement($this->num_tshirts);
             $size = $faker->randomElement($this->sizes);
-            $color = $faker->randomElement($this->colors);
+            $colors = $faker->randomElement($this->colors);
             $unit_price = $usaPropria ? 15 : 10;
             if ($qty >= 5) {
                 $unit_price = $usaPropria ? 12 : 8.5;
@@ -160,7 +160,7 @@ class OrdersSeeder extends Seeder
             $allItems[] = [
                 'order_id' => $order->id,
                 'tshirt_image_id' => $id_tshirtImage,
-                'color_code' => $color,
+                'color_code' => $colors,
                 'size' => $size,
                 'qty' => $qty,
                 'unit_price' => $unit_price,
