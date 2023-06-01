@@ -18,7 +18,11 @@
             @foreach ($prices as $price)
                 <tr>
                     <td>{{ $price->id }}</td>
-                    <td>{{ $price->name }}</td>
+                    <td>{{ $price->unit_price_catalog }}</td>
+                    <td>{{ $price->unit_price_own }}</td>
+                    <td>{{ $price->unit_price_catalog_discount }}</td>
+                    <td>{{ $price->unit_price_own_discount }}</td>
+                    <td>{{ $price->qty_discount }}</td>
                     <td>
                         <a href="{{ route('prices.show', $price->id) }}" class="btn btn-info">Detalhes</a>
                         <a href="{{ route('prices.edit', $price->id) }}" class="btn btn-primary">Editar</a>

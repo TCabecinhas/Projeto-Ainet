@@ -11,6 +11,8 @@ use App\Http\Controllers\CandidaturaController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\PriceController;
+
 
 Route::view('/', 'home')->name('root');
 
@@ -37,6 +39,8 @@ Route::resource('colors', ColorController::class);
 Route::get('colors/{color}', [ColorController::class, 'show'])->name('colors.show');
 
 Route::put('colors/{color}', [ColorController::class, 'update'])->name('colors.update');
+
+Route::resource('prices', PriceController::class);
 
 Auth::routes();
 

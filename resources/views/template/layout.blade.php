@@ -101,6 +101,11 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
                             Colors
                         </a>
+                        <a class="nav-link {{ Route::currentRouteName() == 'prices.index' ? 'active' : '' }}"
+                            href="{{ route('prices.index') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
+                            Prices
+                        </a>
                         <div class="sb-sidenav-menu-heading">Gestão</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseCurricular" aria-expanded="false"
