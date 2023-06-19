@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Tshirt_Images\Tshirt_ImageStoreRequest;
-use App\Http\Requests\Tshirt_Images\Tshirt_ImageUpdateRequest;
+use App\Http\Requests\TshirtImages\TshirtImageStoreRequest;
+use App\Http\Requests\TshirtImages\TshirtImageUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\TshirtImage;
