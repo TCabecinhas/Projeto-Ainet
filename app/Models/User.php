@@ -2,37 +2,34 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'admin',
         'tipo',
-        'genero',
-        'url_foto'
+        'bloqueado',
+        'foto_url'
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
@@ -40,30 +37,15 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function docente(): HasOne
-    {
-        return $this->hasOne(Docente::class);
-    }
-
-    public function aluno(): HasOne
-    {
-        return $this->hasOne(Aluno::class);
-    }
-
-    protected function fullPhotoUrl(): Attribute
-    {
-        return Attribute::make(
-            get: function () {
-                return $this->url_foto ? asset('storage/fotos/' . $this->url_foto) : asset('/img/avatar_unknown.png');
-            },
-        );
+    public function cliente(){
+        return $this->belongsTo(Cliente::class, 'id', 'id');
     }
 }
