@@ -10,17 +10,17 @@ class Cor extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'cores';
+    protected $table = 'colors';
 
-    protected $primaryKey = 'codigo';
+    protected $primaryKey = 'code';
     public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
-        'nome'
+        'name'
     ];
 
     public function tshirts(){
-        return $this->hasMany(Tshirt::class, 'cor_codigo', 'codigo');
+        return $this->hasMany(Tshirt::class, 'color_code', 'code');
     }
 }

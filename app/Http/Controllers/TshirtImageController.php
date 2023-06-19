@@ -136,9 +136,9 @@ class TshirtImageController extends Controller
 
     public function tshirtImage($id)
     {
-        $prices = Price::take(1)->first();
+        $prices = Preco::take(1)->first();
         $tshirtImage = TshirtImage::findOrFail($id);
-        $colors = Color::all();
+        $colors = Cor::all();
         $recommended = TshirtImage::where('id', '<>', $id)
                     ->where('customer_id', NULL)
                     ->where('category_id', $tshirtImage->category_id)
@@ -146,7 +146,7 @@ class TshirtImageController extends Controller
                     ->take(4)
                     ->get();
 
-        return view('tshirtImages.tshirtImage')->with(['colors' => $colors, 'tshirtImage' => $tshirtImage, 'recommended' => $recommended, 'prices' => $prices]);
+        return view('tshirtImages.tshirtImages')->with(['colors' => $colors, 'tshirtImage' => $tshirtImage, 'recommended' => $recommended, 'prices' => $prices]);
     }
 
     public function getFile($path)
