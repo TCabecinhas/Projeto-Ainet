@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="{{asset('img/plain_white.png')}}" type="img/png">
+    <link rel="icon" href="{{ asset('img/plain_white.png') }}" type="img/png">
 
 
     <title>{{ config('app.name', 'Imagine Shirts') }} | Dashboard</title>
@@ -16,7 +16,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-        <!-- Scripts -->
+    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     {{-- CSS --}}
@@ -80,7 +80,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; MagicShirts 2021</span>
+                        <span>Copyright &copy; ImagineShirts 2023</span>
                     </div>
                 </div>
             </footer>
@@ -109,8 +109,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">Terminar sessão</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Terminar
+                        sessão</a>
                     <button class="btn btn-outline-dark" type="button" data-dismiss="modal">Cancelar</button>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

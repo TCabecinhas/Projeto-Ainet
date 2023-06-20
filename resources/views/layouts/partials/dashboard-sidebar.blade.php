@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon">
             <img src="/img/plain_white.png" alt="Logo" class="logo-img">
         </div>
-        <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Magic Shirts') }}</div>
+        <div class="sidebar-brand-text mx-3">{{ config('app.name', 'Imagine Shirts') }}</div>
     </a>
 
     <hr class="sidebar-divider my-0">
