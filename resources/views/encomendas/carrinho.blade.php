@@ -180,7 +180,7 @@
                         <div class="row main align-items-center">
                             <div class="col-md-3">
                                 <img class="img-fluid" height="150px"
-                                    src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirtImages/' . $tshirt->tshirtImage->imagem_url) }}"
+                                    src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirtImages/' . $tshirt->tshirtImage->image_url) }}"
                                     alt="{{ $tshirt->tshirtImage->name }}">
                                 <img class="img-fluid ml-3" height="150px"
                                     src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->cor_codigo . '.jpg' }}"

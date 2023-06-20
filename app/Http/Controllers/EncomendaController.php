@@ -76,15 +76,15 @@ class EncomendaController extends Controller
 
         // Criar encomenda
         $encomenda = new Encomenda();
-        $encomenda->estado = 'pendente';
-        $encomenda->cliente_id = Auth::user()->id;
-        $encomenda->data = date('Y-m-d');
-        $encomenda->preco_total = $aux['total'];
-        $encomenda->notas = $data['notas'];
+        $encomenda->status = 'pendente';
+        $encomenda->customer_id = Auth::user()->id;
+        $encomenda->date = date('Y-m-d');
+        $encomenda->total_price = $aux['total'];
+        $encomenda->notes = $data['notas'];
         $encomenda->nif = $data['nif'];
-        $encomenda->endereco = $data['endereco'];
-        $encomenda->tipo_pagamento = $data['tipo_pagamento'];
-        $encomenda->ref_pagamento = $data['tipo_pagamento'] == 'PAYPAL' ? Auth::user()->email : $data['nif'];
+        $encomenda->address = $data['endereco'];
+        $encomenda->payment_type = $data['tipo_pagamento'];
+        $encomenda->payment_ref = $data['tipo_pagamento'] == 'PAYPAL' ? Auth::user()->email : $data['nif'];
         $encomenda->save();
 
         // Criar tshirts

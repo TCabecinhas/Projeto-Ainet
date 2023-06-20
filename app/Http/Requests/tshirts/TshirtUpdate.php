@@ -14,7 +14,7 @@ class TshirtUpdate extends FormRequest
     public function rules()
     {
         return [
-            'cor_codigo' => 'required|exists:cores,codigo',
+            'cor_codigo' => 'required|exists:colors,code',
             'tamanho' => 'required|in:XS,S,M,L,XL',
             'quantidade' => 'required|integer|min:1',
             'file' => 'image'

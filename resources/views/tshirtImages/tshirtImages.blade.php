@@ -89,10 +89,10 @@
                                 </button>
                             </div>
                             <div class="row mt-3">
-                                <p><b>Preço unitário de uma tshirt: </b><u>{{ $prices->catalog_unit_price }}€</u>
+                                <p><b>Preço unitário de uma tshirt: </b><u>{{ $prices->unit_price_catalog }}€</u>
                                 </p>
-                                <p><b>A partir de {{ $prices->discount_quantity }} tshirts, o preço de cada tshirt
-                                        baixa para </b><u>{{ $prices->catalog_discounted_unit_price }}€</u></p>
+                                <p><b>A partir de {{ $prices->qty_discount }} tshirts, o preço de cada tshirt
+                                        baixa para </b><u>{{ $prices->unit_price_catalog_discount }}€</u></p>
                             </div>
                             </form>
                         </div>
