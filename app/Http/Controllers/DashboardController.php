@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
+use App\Models\Category;
 use App\Models\Cliente;
 use App\Models\Encomenda;
 use App\Models\TshirtImage;
@@ -41,7 +41,7 @@ class DashboardController extends Controller
                 $encomendas = Encomenda::count();
                 $encomendas_acao = Encomenda::where('estado', 'pendente')
                     ->orWhere('estado', 'paga')->count();
-                $categorias = Categoria::count();
+                $categorias = Category::count();
 
 
 
