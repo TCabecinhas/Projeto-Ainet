@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     // Tshirt personalizada
     Route::get('tshirts/criar-personalizada', [TshirtController::class, 'criarPersonalizada'])->middleware('can:is-client')->name('tshirts.criar-personalizada');
     Route::get('carrinho/editar-personalizada/{index}', [TshirtController::class, 'editarPersonalizada'])->name('tshirts.editar-personalizada');
+    Route::get('/carrinho/adicionar-catalogo/{tshirtImage}', [TshirtController::class, 'adicionarCatalogoCarrinho'])->name('tshirts.adicionar-catalogo-carrinho');
     Route::post('carrinho/adicionar-personalizada', [TshirtController::class, 'adicionarPersonalizadaAoCarrinho'])->name('tshirts.adicionar-personalizada-carrinho');
     Route::put('carrinho/atualizar/{index}', [TshirtController::class, 'atualizarPersonalizada'])->name('tshirts.atualizar-personalizada');
 
