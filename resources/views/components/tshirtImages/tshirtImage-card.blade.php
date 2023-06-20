@@ -5,7 +5,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ $tshirtImage->name }}</h5>
             <p class="card-text">Categoria:
-                {{ $tshirtImage->category != null ? $tshirtImage->category->name : 'Sem Categoria' }}</p>
+                {{ $tshirtImage->category == null ? $tshirtImage->categoria->name : 'Sem Categoria' }}</p>
             <a href="{{ route('tshirtImages.tshirtImage', $tshirtImage->id) }}" class="btn btn-outline-dark">Ver mais</a>
         </div>
     </div>
