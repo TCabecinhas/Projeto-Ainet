@@ -20,7 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('tshirtImages', [TshirtImageController::class, 'catalogo'])->name('tshirtImages.catalogo');
 Route::get('tshirtImages/{id}', [TshirtImageController::class, 'tshirtImage'])->name('tshirtImages.tshirtImage');
 Route::get('tshirtImages/image/{path}', [TshirtImageController::class, 'getFile'])->name('tshirtImages.get-file');
-Route::get('tshirtImages/categoria/{id}', [TshirtImageController::class, 'categoria'])->name('tshirtImages.categoria');
+Route::get('tshirtImages/category/{id}', [TshirtImageController::class, 'category'])->name('tshirtImages.category');
 
 
 // Carrinho

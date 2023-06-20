@@ -10,6 +10,8 @@ class TshirtImage extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'tshirt_images';
+
     protected $fillable = [
         'customer_id',
         'category_id',
@@ -20,7 +22,7 @@ class TshirtImage extends Model
     ];
 
     public function categoria(){
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function cliente(){

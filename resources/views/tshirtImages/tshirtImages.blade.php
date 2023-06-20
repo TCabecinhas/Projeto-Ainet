@@ -42,9 +42,10 @@
                                 <div class="mb-2 ">
                                     <h5>Categoria:
                                         <a
-                                            href="{{ $tshirtImage->category_id ? route('tshirtImages.category', $tshirtImage->category->id) : '#' }}">
-                                            {{ $tshirtImage->category_id ? $tshirtImage->category->name : 'Sem categoria' }}
+                                            href="{{ $tshirtImage->category_id && $tshirtImage->category ? route('tshirtImages.category', ['id' => $tshirtImage->category->id]) : '#' }}">
+                                            {{ $tshirtImage->category_id && $tshirtImage->category ? $tshirtImage->category->name : 'Sem categoria' }}
                                         </a>
+                                                                              
                                     </h5>
                                 </div>
 

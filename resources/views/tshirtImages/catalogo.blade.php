@@ -147,7 +147,7 @@
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     @foreach ($categories as $categoria)
                                     <li class="list-group-item "><a
-                                            href="{{ route('tshirtImages.categoria', $categoria->id) }}"
+                                            href="{{ route('tshirtImages.category', $categoria->id) }}"
                                             class="link-dark rounded"
                                             style="text-decoration:none">{{ $categoria->nome }}</a>
                                     </li>

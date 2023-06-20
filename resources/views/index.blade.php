@@ -245,7 +245,7 @@
                 <h1 class="text-center">Algumas das nossas imagens</h1>
                 <h4 class="text-center">Para conheceres mais visita o nosso catálogo</h4>
                 <div class="row">
-                @foreach ($tshirtImages as $tshirtImage)
+                @foreach ($tshirtImages as $tshirtImage)               
                     <x-tshirtImage-card :tshirtImage="$tshirtImage" />
                 @endforeach
                 </div>
