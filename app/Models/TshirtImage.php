@@ -22,7 +22,7 @@ class TshirtImage extends Model
     ];
 
     public function categoria(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function cliente(){

@@ -10,8 +10,12 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $timestamps = false;
     protected $table = 'categories';
+
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    public $timestamps = false;
+
     protected $fillable = [
         'name'
     ];
@@ -19,4 +23,5 @@ class Category extends Model
     public function images(){
         return $this->hasMany(TshirtImage::class);
     }
+    
 }
