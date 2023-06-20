@@ -43,7 +43,7 @@
                                     <h5>Categoria:
                                         <a
                                             href="{{ $tshirtImage->category_id && $tshirtImage->category ? route('tshirtImages.category', ['id' => $tshirtImage->categories->id]) : '#' }}">
-                                            {{ $tshirtImage->category_id && $tshirtImage->category ? $tshirtImage->category : 'Sem categoria' }}
+                                            {{ $tshirtImage->category_id && $tshirtImage->categoria ? $tshirtImage->categoria->name : 'Sem categoria' }}
                                         </a>
                                     </h5>
                                 </div>
