@@ -11,7 +11,6 @@ class TshirtImageCard extends Component
     public function __construct($tshirtImage)
     {
         $this->tshirtImage = $tshirtImage;
-        dd($tshirtImage);
     }
     
     public function render()
