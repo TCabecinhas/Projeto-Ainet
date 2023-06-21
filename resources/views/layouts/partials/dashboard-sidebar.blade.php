@@ -46,7 +46,7 @@
         </li>
     @endcan
 
-    @can('viewAny', \App\Models\Categoria::class)
+    @can('viewAny', \App\Models\Category::class)
         <li class="nav-item {{ str_contains(Route::currentRouteName(), 'dashboard.categorias') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.categorias.index') }}">
                 <i class="fas fa-fw fa-tags"></i>

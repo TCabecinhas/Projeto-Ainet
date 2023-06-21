@@ -9,24 +9,26 @@ class Encomenda extends Model
 {
     use HasFactory;
 
+    protected $table = 'orders';
+
     protected $fillable = [
-        'estado',
-        'cliente_id',
-        'data',
-        'preco_total',
-        'notas',
+        'status',
+        'customer_id',
+        'date',
+        'total_price',
+        'notes',
         'nif',
-        'endereço',
-        'tipo_pagamento',
-        'ref_pagamento',
-        'recibo_url'
+        'address',
+        'payment_type',
+        'payment_ref',
+        'receipt_url'
     ];
 
     public function tshirts(){
-        return $this->hasMany(Tshirt::class, 'encomenda_id', 'id');
+        return $this->hasMany(Tshirt::class, 'order_id', 'id');
     }
 
     public function cliente(){
-        return $this->belongsTo(Cliente::class, 'cliente_id', 'id');
+        return $this->belongsTo(Cliente::class, 'customer_id', 'id');
     }
 }

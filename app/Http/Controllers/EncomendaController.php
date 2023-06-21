@@ -20,22 +20,22 @@ class EncomendaController extends Controller
     public function index(Request $request){
 
 
-        // Administrador -> Mostra todas as encomendas
-        // Funcionário -> Mostra encomendas pendentes e pagas
-        // Cliente -> Mostra apenas as suas encomendas
+        // Admin -> Mostra todas as encomendas
+        // Employee -> Mostra encomendas pendentes e pagas
+        // Client -> Mostra apenas as suas encomendas
         if(Auth::user()->tipo == 'C'){
-            $encomendas = Encomenda::where('cliente_id', Auth::user()->id)->orderBy('data', 'DESC')->paginate(20);
-        } else if(Auth::user()->tipo == 'F'){
-            $encomendas = Encomenda::where('estado', 'pendente')->orWhere('estado', 'paga')->orderBy('data', 'DESC')->paginate(20);
+            $encomendas = Encomenda::where('customer_id', Auth::user()->id)->orderBy('date', 'DESC')->paginate(20);
+        } else if(Auth::user()->tipo == 'E'){
+            $encomendas = Encomenda::where('status', 'pending')->orWhere('status', 'paid')->orderBy('date', 'DESC')->paginate(20);
         } else {
-            $encomendas = Encomenda::orderBy('data', 'DESC')->paginate(20);
+            $encomendas = Encomenda::orderBy('date', 'DESC')->paginate(20);
         }
 
-        return view('dashboard.encomendas.index', ['encomendas' => $encomendas, 'estado' => $request->estado ?? '']);
+        return view('dashboard.encomendas.index', ['orders' => $encomendas, 'status' => $request->status ?? '']);
     }
 
     public function view(Encomenda $encomenda){
-        return view('dashboard.encomendas.view', ['encomenda' => $encomenda]);
+        return view('dashboard.encomendas.view', ['order' => $encomenda]);
     }
 
     public function carrinho(){
@@ -76,15 +76,15 @@ class EncomendaController extends Controller
 
         // Criar encomenda
         $encomenda = new Encomenda();
-        $encomenda->status = 'pendente';
+        $encomenda->status = 'pending';
         $encomenda->customer_id = Auth::user()->id;
         $encomenda->date = date('Y-m-d');
         $encomenda->total_price = $aux['total'];
-        $encomenda->notes = $data['notas'];
+        $encomenda->notes = $data['notes'];
         $encomenda->nif = $data['nif'];
-        $encomenda->address = $data['endereco'];
-        $encomenda->payment_type = $data['tipo_pagamento'];
-        $encomenda->payment_ref = $data['tipo_pagamento'] == 'PAYPAL' ? Auth::user()->email : $data['nif'];
+        $encomenda->address = $data['address'];
+        $encomenda->payment_type = $data['payment_type'];
+        $encomenda->payment_ref = $data['payment_type'] == 'PAYPAL' ? Auth::user()->email : $data['nif'];
         $encomenda->save();
 
         // Criar tshirts
@@ -130,14 +130,14 @@ class EncomendaController extends Controller
     }
 
     public function pay(Encomenda $encomenda){
-        $encomenda->estado = 'paga';
+        $encomenda->estado = 'paid';
         $encomenda->save();
 
         return redirect()->route('dashboard.encomendas.index')->with('success', 'A encomenda foi alterada para o estado "PAGA"');
     }
 
     public function close(Encomenda $encomenda){
-        $encomenda->estado = 'fechada';
+        $encomenda->estado = 'closed';
 
         // Gerar PDF
         $recibo = $this->gerarRecibo($encomenda);
@@ -154,7 +154,7 @@ class EncomendaController extends Controller
     }
 
     public function cancel(Encomenda $encomenda){
-        $encomenda->estado = 'anulada';
+        $encomenda->estado = 'canceled';
         $encomenda->save();
 
         return redirect()->route('dashboard.encomendas.index')->with('success', 'A encomenda foi alterada para o estado "ANULADA"');
