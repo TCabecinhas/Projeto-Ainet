@@ -15,14 +15,14 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         $userType = $user-> user_type;
-        
+
         switch($userType){
             case 'C':
-                $tshirtImages = TshirtImage::where('customer_id', Auth::user()->id)->count();
-                $encomendas = Encomenda::where('customer_id', Auth::user()->id)->count();
-                $encomendas_finalizadas = Encomenda::where('customer_id', Auth::user()->id)->where('status', 'closed')->count();
-                $encomendas_em_espera = Encomenda::where('customer_id', Auth::user()->id)->where('status', 'paid')->count();
-                $encomendas_por_pagar = Encomenda::where('customer_id', Auth::user()->id)->where('status', 'pending')->count();
+                $tshirtImages = TshirtImage::where('customer_id', $user->id)->count();
+                $encomendas = Encomenda::where('customer_id', $user->id)->count();
+                $encomendas_finalizadas = Encomenda::where('customer_id', $user->id)->where('status', 'closed')->count();
+                $encomendas_em_espera = Encomenda::where('customer_id', $user->id)->where('status', 'paid')->count();
+                $encomendas_por_pagar = Encomenda::where('customer_id', $user->id)->where('status', 'pending')->count();
 
 
                 return view('dashboard.cliente-index', [
@@ -35,12 +35,14 @@ class DashboardController extends Controller
                 break;
 
             case 'A':
+
                 $utilizadores = User::count();
                 $catalogo = TshirtImage::where('customer_id', NULL)->count();
                 $cliente = User::where('user_type', 'C')->count();
                 $funcionarios = User::where('user_type', 'E')->count();
                 $admins = User::where('user_type', 'A')->count();
                 $encomendas = Encomenda::count();
+                $encomendasTotal = Encomenda::all();
                 $encomendas_acao = Encomenda::where('status', 'pending')
                     ->orWhere('status', 'paid')->count();
                 $categorias = Category::count();
@@ -48,6 +50,7 @@ class DashboardController extends Controller
 
 
                 return view('dashboard.admin-index', [
+                    'encomendasTotal' => $encomendasTotal,
                     'utilizadores' => $utilizadores,
                     'catalogo' => $catalogo,
                     'cliente' => $cliente,

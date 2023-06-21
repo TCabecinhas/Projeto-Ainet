@@ -21,7 +21,7 @@
     <hr class="sidebar-divider">
 
 
-    <li class="nav-item {{ str_contains(Route::currentRouteName(), 'dashboard.encomendas') ? 'active' : '' }}">
+    <li class="nav-item  {{ str_contains(Route::currentRouteName(), 'dashboard.encomendas') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('dashboard.encomendas.index') }}">
             <i class="fas fa-fw fa-box"></i>
             <span>Encomendas</span>
@@ -94,7 +94,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/') }}">
             <i class="fas fa-fw fa-home"></i>
-            <span>Loja</span>
+            <span>Voltar à Loja</span>
         </a>
     </li>
 

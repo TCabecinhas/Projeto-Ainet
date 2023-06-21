@@ -31,11 +31,11 @@ class EncomendaController extends Controller
             $encomendas = Encomenda::orderBy('date', 'DESC')->paginate(20);
         }
 
-        return view('dashboard.encomendas.index', ['orders' => $encomendas, 'status' => $request->status ?? '']);
+        return view('dashboard.encomendas.index', ['encomendas' => $encomendas, 'status' => $request->status ?? '']);
     }
 
-    public function view(Encomenda $encomenda){
-        return view('dashboard.encomendas.view', ['order' => $encomenda]);
+    public function view(Encomenda $encomendas){
+        return view('dashboard.encomendas.view', ['order' => $encomendas]);
     }
 
     public function carrinho(){

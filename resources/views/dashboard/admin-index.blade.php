@@ -55,12 +55,14 @@
         </div>
 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-            <div class="card text-center {{ $encomendas_acao > 0 ? 'bg-danger text-light' : ''}}">
-                <div class="card-header {{ $encomendas_acao > 0 ? 'bg-danger text-light' : ''}}">Encomendas à espera de ação:</div>
+            <div class="card text-center {{ $encomendas_acao > 0 ? 'bg-danger text-light' : '' }}">
+                <div class="card-header {{ $encomendas_acao > 0 ? 'bg-danger text-light' : '' }}">Encomendas à espera de
+                    ação:</div>
                 <div class="card-body">
                     <h1>{{ $encomendas_acao }}</h1>
-                    @if($encomendas_acao > 0)
-                        <a href="{{ route('dashboard.encomendas.index') }}" class="btn btn-block btn-outline-light">Ações <i class="fa fa-arrow-right"></i></a>
+                    @if ($encomendas_acao > 0)
+                        <a href="{{ route('dashboard.encomendas.index') }}" class="btn btn-block btn-outline-light">Ações
+                            <i class="fa fa-arrow-right"></i></a>
                     @endif
                 </div>
             </div>
