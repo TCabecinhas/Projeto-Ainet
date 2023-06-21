@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Cliente;
 use App\Models\Encomenda;
 use App\Models\TshirtImage;
 use App\Models\User;
@@ -14,7 +13,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        switch(Auth::user()->tipo){
+        $user = Auth::user();
+        $userType = $user-> user_type;
+        
+        switch($userType){
             case 'C':
                 $tshirtImages = TshirtImage::where('customer_id', Auth::user()->id)->count();
                 $encomendas = Encomenda::where('customer_id', Auth::user()->id)->count();
@@ -36,7 +38,7 @@ class DashboardController extends Controller
                 $utilizadores = User::count();
                 $catalogo = TshirtImage::where('customer_id', NULL)->count();
                 $cliente = User::where('user_type', 'C')->count();
-                $funcionarios = User::where('user_type', 'F')->count();
+                $funcionarios = User::where('user_type', 'E')->count();
                 $admins = User::where('user_type', 'A')->count();
                 $encomendas = Encomenda::count();
                 $encomendas_acao = Encomenda::where('status', 'pending')
@@ -57,7 +59,7 @@ class DashboardController extends Controller
                 ]);
                 break;
 
-            case 'F':
+            case 'E':
                 $catalogo = TshirtImage::where('customer_id', NULL)->count();
                 $cliente = User::where('user_type', 'C')->count();
                 $encomendas = Encomenda::count();
