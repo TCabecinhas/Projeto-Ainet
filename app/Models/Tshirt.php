@@ -9,14 +9,15 @@ class Tshirt extends Model
 {
     use HasFactory;
 
+    protected $table = 'order_items';
     protected $fillable = [
-        'encomenda_id',
-        'tshirtImage_id',
-        'cor_codigo',
-        'tamanho',
-        'quantidade',
-        'preco_un',
-        'subtotal'
+        'order_id',
+        'tshirt_image_id',
+        'color_code',
+        'size',
+        'qty',
+        'unit_price',
+        'sub_total'
     ];
 
     public $timestamps = false;
@@ -30,7 +31,7 @@ class Tshirt extends Model
     }
 
     public function cor(){
-        return $this->belongsTo(Cor::class, 'codigo', 'cor_codigo');
+        return $this->belongsTo(Cor::class, 'code', 'color_code');
     }
 
 

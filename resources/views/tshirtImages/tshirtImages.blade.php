@@ -34,7 +34,7 @@
                     <div class="container mb-4">
                         <div class="row">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
-                                <img src="{{ asset('storage/tshirtImages/' . $tshirtImage->image_url) }}"
+                                <img src="{{ asset('storage/tshirt_images/' . $tshirtImage->image_url) }}"
                                     class="img-fluid w-75 h-auto" alt="{{ $tshirtImage->name }}">
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">

@@ -10,11 +10,12 @@ class Cliente extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'customers';
     protected $fillable = [
         'nif',
-        'endereco',
-        'tipo_pagamento',
-        'ref_pagamento',
+        'address',
+        'default_payment_type',     
+        'default_payment_ref',
     ];
 
     public function user(){
@@ -22,10 +23,10 @@ class Cliente extends Model
     }
 
     public function images(){
-        return $this->hasMany(TshirtImage::class, 'cliente_id', 'id');
+        return $this->hasMany(TshirtImage::class, 'customer_id', 'id');
     }
 
     public function encomendas(){
-        return $this->hasMany(Encomenda::class, 'cliente_id', 'id');
+        return $this->hasMany(Encomenda::class, 'customer_id', 'id');
     }
 }

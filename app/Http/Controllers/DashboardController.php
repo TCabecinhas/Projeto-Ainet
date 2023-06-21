@@ -16,11 +16,11 @@ class DashboardController extends Controller
     {
         switch(Auth::user()->tipo){
             case 'C':
-                $tshirtImages = TshirtImage::where('cliente_id', Auth::user()->id)->count();
-                $encomendas = Encomenda::where('cliente_id', Auth::user()->id)->count();
-                $encomendas_finalizadas = Encomenda::where('cliente_id', Auth::user()->id)->where('estado', 'fechada')->count();
-                $encomendas_em_espera = Encomenda::where('cliente_id', Auth::user()->id)->where('estado', 'paga')->count();
-                $encomendas_por_pagar = Encomenda::where('cliente_id', Auth::user()->id)->where('estado', 'pendente')->count();
+                $tshirtImages = TshirtImage::where('customer_id', Auth::user()->id)->count();
+                $encomendas = Encomenda::where('customer_id', Auth::user()->id)->count();
+                $encomendas_finalizadas = Encomenda::where('customer_id', Auth::user()->id)->where('status', 'closed')->count();
+                $encomendas_em_espera = Encomenda::where('customer_id', Auth::user()->id)->where('status', 'paid')->count();
+                $encomendas_por_pagar = Encomenda::where('customer_id', Auth::user()->id)->where('status', 'pending')->count();
 
 
                 return view('dashboard.cliente-index', [
@@ -34,13 +34,13 @@ class DashboardController extends Controller
 
             case 'A':
                 $utilizadores = User::count();
-                $catalogo = TshirtImage::where('cliente_id', NULL)->count();
-                $cliente = User::where('tipo', 'C')->count();
-                $funcionarios = User::where('tipo', 'F')->count();
-                $admins = User::where('tipo', 'A')->count();
+                $catalogo = TshirtImage::where('customer_id', NULL)->count();
+                $cliente = User::where('user_type', 'C')->count();
+                $funcionarios = User::where('user_type', 'F')->count();
+                $admins = User::where('user_type', 'A')->count();
                 $encomendas = Encomenda::count();
-                $encomendas_acao = Encomenda::where('estado', 'pendente')
-                    ->orWhere('estado', 'paga')->count();
+                $encomendas_acao = Encomenda::where('status', 'pending')
+                    ->orWhere('status', 'paid')->count();
                 $categorias = Category::count();
 
 
@@ -58,11 +58,11 @@ class DashboardController extends Controller
                 break;
 
             case 'F':
-                $catalogo = TshirtImage::where('cliente_id', NULL)->count();
-                $cliente = User::where('tipo', 'C')->count();
+                $catalogo = TshirtImage::where('customer_id', NULL)->count();
+                $cliente = User::where('user_type', 'C')->count();
                 $encomendas = Encomenda::count();
-                $encomendas_acao = Encomenda::where('estado', 'pendente')
-                    ->orWhere('estado', 'paga')->count();
+                $encomendas_acao = Encomenda::where('status', 'pending')
+                    ->orWhere('status', 'paid')->count();
 
 
 
