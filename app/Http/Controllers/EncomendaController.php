@@ -113,7 +113,7 @@ class EncomendaController extends Controller
         $total = 0;
 
         foreach($carrinho as $i => $t){
-            $carrinho[$i]->image = TshirtImage::find($t->image);
+            $carrinho[$i]->imagem = TshirtImage::find($t->imagem);
             // Atribuir preços unitarios e subtotais
             if($carrinho[$i]->quantidade >= $precos->quantidade_desconto){
                 $carrinho[$i]->preco_un = $t->personalizada ? $precos->preco_un_proprio_desconto : $precos->preco_un_catalogo_desconto;
