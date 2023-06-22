@@ -9,14 +9,20 @@ use Illuminate\Http\Request;
 use App\Models\TshirtImage;
 use App\Models\Cor;
 use App\Models\Preco;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class TshirtImageController extends Controller
 {
     public function index()
     {
-        $tshirtImages = TshirtImage::where('customer_id', NULL)->orderBy('created_at', 'DESC')->paginate(20);
         
+        $tshirtImages = DB::table('tshirt_images')
+        ->select('tshirt_images.*', 'categories.name as category_name')
+        ->where('customer_id', NULL)
+        ->join('categories', 'tshirt_images.category_id', '=', 'categories.id')
+        ->orderBy('created_at', 'DESC')
+        ->paginate(20);
         return view('dashboard.tshirtImages.index', ['tshirtImages' => $tshirtImages]);
     }
 

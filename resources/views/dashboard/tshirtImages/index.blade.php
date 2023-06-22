@@ -22,14 +22,14 @@
                     <tr>
                         <td>{{ $tshirtImage->id }}</td>
                         <td>{{ $tshirtImage->name }}</td>
-                        <td>{{ $tshirtImage->category ? $tshirtImage->category->name : '-' }}</td>
+                        <td>{{ $tshirtImage->category_name ? $tshirtImage->category_name : '-' }}</td>
                         <td>
                             {{-- Ver --}}
-                            <a href="{{ route('dashboard.tshirtImages.view', $tshirtImage) }}"
+                            <a href="{{ route('dashboard.tshirtImages.view', $tshirtImage->id) }}"
                                 class="btn btn-sm btn-outline-primary"><i class="fa fa-eye"></i></a>
 
                             {{-- Editar --}}
-                            <a href="{{ route('dashboard.tshirtImages.edit', $tshirtImage) }}"
+                            <a href="{{ route('dashboard.tshirtImages.edit', $tshirtImage->id) }}"
                                 class="btn btn-sm btn-outline-warning"><i class="fa fa-pencil-alt"></i></a>
 
                             {{-- Eliminar --}}
@@ -39,7 +39,7 @@
                     </tr>
 
                     <form id="form_delete_{{ $tshirtImage->id }}"
-                        action="{{ route('dashboard.tshirtImages.destroy', $tshirtImage) }}" method="POST">
+                        action="{{ route('dashboard.tshirtImages.destroy', $tshirtImage->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                     </form>
