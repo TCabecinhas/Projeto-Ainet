@@ -13,7 +13,7 @@ class PrecoUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->tipo == 'A';
+        return $this->user()->user_type == 'A';
     }
 
     /**
@@ -24,11 +24,11 @@ class PrecoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'preco_un_catalogo' => 'required|numeric|min:0',
-            'preco_un_proprio' => 'required|numeric|min:0',
-            'preco_un_catalogo_desconto' => 'required|numeric|min:0',
-            'preco_un_proprio_desconto' => 'required|numeric|min:0',
-            'quantidade_desconto' => 'required|numeric|min:0'
+            'unit_price_catalog' => 'required|numeric|min:0',
+            'unit_price_own' => 'required|numeric|min:0',
+            'unit_price_catalog_discount' => 'required|numeric|min:0',
+            'unit_price_own_discount' => 'required|numeric|min:0',
+            'qty_discount' => 'required|numeric|min:0'
         ];
     }
 }

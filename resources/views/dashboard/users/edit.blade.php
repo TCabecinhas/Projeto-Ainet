@@ -18,9 +18,9 @@
             <div class="form-group">
                 <label for="sel-tipo">Tipo:</label>
                 <select name="tipo" id="sel-tipo" class="form-control">
-                    <option value="C" {{ $user->tipo == 'C' ? 'selected' : ''}}>Cliente</option>
-                    <option value="A" {{ $user->tipo == 'A' ? 'selected' : ''}}>Administrador</option>
-                    <option value="F" {{ $user->tipo == 'F' ? 'selected' : ''}}>Funcionário</option>
+                    <option value="C" {{ $user->user_type == 'C' ? 'selected' : ''}}>Cliente</option>
+                    <option value="A" {{ $user->user_type == 'A' ? 'selected' : ''}}>Administrador</option>
+                    <option value="E" {{ $user->user_type == 'E' ? 'selected' : ''}}>Funcionário</option>
                 </select>
             </div>
 

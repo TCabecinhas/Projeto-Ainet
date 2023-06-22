@@ -17,7 +17,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -29,8 +29,8 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        dd($user->tipo);
-        return $user->tipo == 'A';
+        dd($user->user_type);
+        return $user->user_type == 'A';
     }
 
     /**
@@ -41,7 +41,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -53,7 +53,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->tipo == 'A' && $model->tipo != 'C';
+        return $user->user_type == 'A' && $model->user_type != 'C';
     }
 
     /**
@@ -65,7 +65,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -77,7 +77,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        return $user->tipo == 'A' && isset($model->deleted_at);
+        return $user->user_type == 'A' && isset($model->deleted_at);
     }
 
     /**
@@ -89,14 +89,14 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        return $user->tipo == 'A' && isset($model->deleted_at);;
+        return $user->user_type == 'A' && isset($model->deleted_at);;
     }
 
     public function block(User $user, User $model){
-        return $user->tipo == 'A' && !$model->bloqueado;
+        return $user->user_type == 'A' && !$model->bloqueado;
     }
 
     public function unblock(User $user, User $model){
-        return $user->tipo == 'A' && $model->bloqueado;
+        return $user->user_type == 'A' && $model->bloqueado;
     }
 }

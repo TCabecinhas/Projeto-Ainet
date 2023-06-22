@@ -18,7 +18,7 @@ class CorPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -41,7 +41,7 @@ class CorPolicy
      */
     public function create(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -53,7 +53,7 @@ class CorPolicy
      */
     public function update(User $user, Cor $cor)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -65,7 +65,7 @@ class CorPolicy
      */
     public function delete(User $user, Cor $cor)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -77,7 +77,7 @@ class CorPolicy
      */
     public function restore(User $user, Cor $cor)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**

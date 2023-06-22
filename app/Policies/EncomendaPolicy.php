@@ -30,7 +30,7 @@ class EncomendaPolicy
      */
     public function view(User $user, Encomenda $encomenda)
     {
-        return $user->tipo->admin || $encomenda->cliente_id == $user->id;
+        return $user->user_type->admin || $encomenda->customer_id == $user->id;
     }
 
     /**
@@ -41,7 +41,7 @@ class EncomendaPolicy
      */
     public function create(User $user)
     {
-        return $user->tipo == 'C';
+        return $user->user_type == 'C';
     }
 
     /**
@@ -53,7 +53,7 @@ class EncomendaPolicy
      */
     public function update(User $user, Encomenda $encomenda)
     {
-        return $user->tipo != 'C' && $encomenda->estado != 'fechada';
+        return $user->user_type != 'C' && $encomenda->status != 'closed';
     }
 
     /**
@@ -93,18 +93,18 @@ class EncomendaPolicy
     }
 
     public function pay(User $user, Encomenda $encomenda){
-        return ($user->tipo == 'A' || $user->tipo == 'E') && $encomenda->estado == 'pendente';
+        return ($user->user_type == 'A' || $user->user_type == 'E') && $encomenda->status == 'pending';
     }
 
     public function close(User $user, Encomenda $encomenda){
-        return ($user->tipo == 'A' || $user->tipo == 'E') && $encomenda->estado == 'paga';
+        return ($user->user_type == 'A' || $user->user_type == 'E') && $encomenda->status == 'paid';
     }
 
     public function cancel(User $user, Encomenda $encomenda){
-        return $user->tipo == 'A' && $encomenda->estado != 'anulada';
+        return $user->user_type == 'A' && $encomenda->status != 'canceled';
     }
 
     public function recibo(User $user, Encomenda $encomenda){
-        return $user->tipo == 'A' || ($encomenda->cliente_id == $user->id);
+        return $user->user_type == 'A' || ($encomenda->customer_id == $user->id);
     }
 }

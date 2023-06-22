@@ -52,7 +52,7 @@ class UserController extends Controller
 
         // Caso o utilizador seja cliente, restaurar o registo do cliente
         $user = User::find($id);
-        if($user->tipo == 'C'){
+        if($user->user_type == 'C'){
             Cliente::onlyTrashed()->where('id', $id)->first()->restore();
         }
 
@@ -66,7 +66,7 @@ class UserController extends Controller
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
-        $user->tipo = $data['tipo'];
+        $user->user_type = $data['tipo'];
         $user->save();
 
         if($data['tipo'] == 'C'){
@@ -83,7 +83,7 @@ class UserController extends Controller
         $data = $request->validated();
 
         // Caso se altere o utilizador para 'cliente', criar o registo de cliente
-        if($data['tipo'] == 'C' && $user->tipo != 'C' && !Cliente::where('id', $user->id)->exists()){
+        if($data['tipo'] == 'C' && $user->user_type != 'C' && !Cliente::where('id', $user->id)->exists()){
             $cliente = new Cliente();
             $cliente->id = $user->id;
             $cliente->save();
@@ -133,18 +133,18 @@ class UserController extends Controller
 
         $user->name = $data['name'];
         $user->email = $data['email'];
-        if($user->tipo == 'C'){
+        if($user->user_type == 'C'){
 
             $user->cliente->nif = $data['nif'];
             $user->cliente->endereco = $data['endereco'];
 
             // Alterar tipo_pagamento e ref_pagamento
             if($data['tipo_pagamento'] == 'PAYPAL'){
-                $user->cliente->tipo_pagamento = 'PAYPAL';
-                $user->cliente->ref_pagamento = $user->email;
+                $user->cliente->default_payment_type = 'PAYPAL';
+                $user->cliente->default_payment_ref = $user->email;
             } else if($data['tipo_pagamento'] == 'MC' || $data['tipo_pagamento'] == 'VISA'){
-                $user->cliente->tipo_pagamento = $data['tipo_pagamento'];
-                $user->cliente->ref_pagamento = $user->cliente->nif;
+                $user->cliente->default_payment_type = $data['tipo_pagamento'];
+                $user->cliente->default_payment_ref = $user->cliente->nif;
             }
             $user->cliente->save();
         }

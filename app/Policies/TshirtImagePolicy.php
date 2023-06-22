@@ -18,7 +18,7 @@ class TshirtImagePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -30,7 +30,7 @@ class TshirtImagePolicy
      */
     public function view(User $user, TshirtImage $tshirtImage)
     {
-        return ($user->tipo == 'A' && $tshirtImage->cliente_id == NULL) || ($user->tipo == 'C' && $tshirtImage->cliente_id == $user->id);
+        return ($user->user_type == 'A' && $tshirtImage->customer_id == NULL) || ($user->user_type == 'C' && $tshirtImage->customer_id == $user->id);
     }
 
     /**
@@ -41,7 +41,7 @@ class TshirtImagePolicy
      */
     public function create(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
@@ -53,7 +53,7 @@ class TshirtImagePolicy
      */
     public function update(User $user, TshirtImage $tshirtImage)
     {
-        return ($user->tipo == 'A' && $tshirtImage->cliente_id == NULL) || ($user->id == $tshirtImage->cliente_id);
+        return ($user->user_type == 'A' && $tshirtImage->customer_id == NULL) || ($user->id == $tshirtImage->customer_id);
     }
 
     /**
@@ -65,7 +65,7 @@ class TshirtImagePolicy
      */
     public function delete(User $user, TshirtImage $tshirtImage)
     {
-        return ($user->tipo == 'A' && $tshirtImage->cliente_id == NULL) || ($user->id == $tshirtImage->cliente_id);
+        return ($user->user_type == 'A' && $tshirtImage->customer_id == NULL) || ($user->id == $tshirtImage->customer_id);
     }
 
     /**
@@ -77,7 +77,7 @@ class TshirtImagePolicy
      */
     public function restore(User $user, TshirtImage $tshirtImage)
     {
-        return $user->tipo == 'A' && $tshirtImage->cliente_id == NULL;
+        return $user->user_type == 'A' && $tshirtImage->customer_id == NULL;
     }
 
     /**

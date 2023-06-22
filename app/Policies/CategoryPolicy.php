@@ -18,14 +18,14 @@ class CategoryPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Category  $categoria
      * @return mixed
      */
     public function view(User $user, Category $categoria)
@@ -40,38 +40,38 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Category  $categoria
      * @return mixed
      */
     public function update(User $user, Category $categoria)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Category  $categoria
      * @return mixed
      */
     public function delete(User $user, Category $categoria)
     {
-        return $user->tipo == 'A';
+        return $user->user_type == 'A';
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Category  $categoria
      * @return mixed
      */
     public function restore(User $user, Category $categoria)
@@ -83,7 +83,7 @@ class CategoryPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\Category  $categoria
      * @return mixed
      */
     public function forceDelete(User $user, Category $categoria)

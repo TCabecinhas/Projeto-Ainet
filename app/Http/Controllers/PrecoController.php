@@ -16,11 +16,11 @@ class PrecoController extends Controller
 
     public function update(Preco $precos, PrecoUpdateRequest $request){
         $data = $request->validated();
-        $precos->preco_un_catalogo          = $data['preco_un_catalogo'];
-        $precos->preco_un_proprio           = $data['preco_un_proprio'];
-        $precos->preco_un_catalogo_desconto = $data['preco_un_catalogo_desconto'];
-        $precos->preco_un_proprio_desconto  = $data['preco_un_proprio_desconto'];
-        $precos->quantidade_desconto        = $data['quantidade_desconto'];
+        $precos->unit_price_catalog          = $data['unit_price_catalog'];
+        $precos->unit_price_own           = $data['unit_price_own'];
+        $precos->unit_price_catalog_discount = $data['unit_price_catalog_discount'];
+        $precos->unit_price_own_discount  = $data['unit_price_own_discount'];
+        $precos->qty_discount        = $data['qty_discount'];
 
         $precos->save();
 

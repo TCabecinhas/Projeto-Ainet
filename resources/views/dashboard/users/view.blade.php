@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <label for="txt-tipo">Tipo:</label>
-            <input type="text" class="form-control" name="email" id="txt-email" aria-describedby="email" value="{{ $user->tipo == 'C' ? 'Cliente' : ($user->tipo == 'A' ? 'Administrador' : 'Funcionário') }}" disabled>
+            <input type="text" class="form-control" name="email" id="txt-email" aria-describedby="email" value="{{ $user->user_type == 'C' ? 'Cliente' : ($user->user_type == 'A' ? 'Administrador' : 'Funcionário') }}" disabled>
         </div>
 
         <div class="form-group">
@@ -33,7 +33,7 @@
             <input type="text" class="form-control" name="tipo" id="txt-email" aria-describedby="tipo" value="{{ date('Y-m-d', strtotime($user->created_at)) }}" disabled>
         </div>
 
-        @if($user->tipo == 'C')
+        @if($user->user_type == 'C')
             <div class="form-group">
                 <label for="txt-nif">NIF:</label>
                 <input type="text" class="form-control" name="nif" id="txt-nif" aria-describedby="nif" value="{{ $user->cliente->nif }}" disabled>
