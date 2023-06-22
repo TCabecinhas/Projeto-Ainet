@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label for="txt-tipo">Bloqueado:</label>
-            <input type="text" class="form-control" name="tipo" id="txt-email" aria-describedby="tipo" value="{{ $user->bloqueado ? 'Sim' : 'Não' }}" disabled>
+            <input type="text" class="form-control" name="tipo" id="txt-email" aria-describedby="tipo" value="{{ $user->blocked ? 'Sim' : 'Não' }}" disabled>
         </div>
 
         <div class="form-group">

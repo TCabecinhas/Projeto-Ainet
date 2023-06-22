@@ -93,10 +93,10 @@ class UserPolicy
     }
 
     public function block(User $user, User $model){
-        return $user->user_type == 'A' && !$model->bloqueado;
+        return $user->user_type == 'A' && !$model->blocked;
     }
 
     public function unblock(User $user, User $model){
-        return $user->user_type == 'A' && $model->bloqueado;
+        return $user->user_type == 'A' && $model->blocked;
     }
 }

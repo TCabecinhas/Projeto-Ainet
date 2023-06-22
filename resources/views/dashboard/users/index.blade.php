@@ -43,7 +43,7 @@
                         <td>{{ $u->name }}</td>
                         <td>{{ $u->email }}</td>
                         <td>{{ $u->tipo == 'C' ? 'Cliente' : ($u->tipo == 'A' ? 'Administrador' : 'Funcionário') }}</td>
-                        <td>{{ $u->bloqueado ? 'Sim' : 'Não' }}</td>
+                        <td>{{ $u->blocked ? 'Sim' : 'Não' }}</td>
                         <td>
                             {{-- Ver --}}
                             <a href="{{ route('dashboard.users.view', $u) }}" class="btn btn-sm btn-outline-primary"><i
@@ -58,7 +58,7 @@
                             {{-- Bloquear --}}
                             <button type="submit" form="form_block_{{ $u->id }}"
                                 class="btn btn-sm btn-outline-dark"><i
-                                    class="fa {{ $u->bloqueado ? 'fa-unlock' : 'fa-lock' }}"></i></button>
+                                    class="fa {{ $u->blocked ? 'fa-unlock' : 'fa-lock' }}"></i></button>
 
                             {{-- Eliminar --}}
                             <button type="submit" form="form_destroy_{{ $u->id }}"
@@ -70,7 +70,7 @@
                             </form>
 
 
-                            @if (!$u->bloqueado)
+                            @if (!$u->blocked)
                                 <form action="{{ route('dashboard.users.block', $u) }}"
                                     id="form_block_{{ $u->id }}" method="POST">
                                     @csrf

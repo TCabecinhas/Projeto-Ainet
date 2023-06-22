@@ -34,8 +34,8 @@ class EncomendaController extends Controller
         return view('dashboard.encomendas.index', ['encomendas' => $encomendas, 'status' => $request->status ?? '']);
     }
 
-    public function view(Encomenda $encomendas){
-        return view('dashboard.encomendas.view', ['order' => $encomendas]);
+    public function view(Encomenda $encomenda){
+        return view('dashboard.encomendas.view', ['order' => $encomenda]);
     }
 
     public function carrinho(){

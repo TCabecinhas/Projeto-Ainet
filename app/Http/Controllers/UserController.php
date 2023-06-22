@@ -157,7 +157,7 @@ class UserController extends Controller
     public function block(User $user){
         $this->authorize('block', $user);
 
-        $user->bloqueado = 1;
+        $user->blocked = 1;
         $user->save();
 
         return redirect()->route('dashboard.users.index')->with('success', 'O utilizador foi bloqueado!');
@@ -166,7 +166,7 @@ class UserController extends Controller
     public function unblock(User $user){
         $this->authorize('unblock', $user);
 
-        $user->bloqueado = 0;
+        $user->blocked = 0;
         $user->save();
 
         return redirect()->route('dashboard.users.index')->with('success', 'O utilizador foi desbloqueado!');
