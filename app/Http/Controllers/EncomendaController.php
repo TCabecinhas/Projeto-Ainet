@@ -42,6 +42,7 @@ class EncomendaController extends Controller
         $carrinho = json_decode(session('carrinho', "[]"));
         $precos = Preco::first();
 
+
         $aux = $this->calcularPrecos($carrinho, $precos);
 
         return view('encomendas.carrinho', ['carrinho' => $aux['carrinho'], 'total' => $aux['total']]);
@@ -113,14 +114,14 @@ class EncomendaController extends Controller
         foreach($carrinho as $i => $t){
             $carrinho[$i]->imagem = TshirtImage::find($t->imagem);
             // Atribuir preços unitarios e subtotais
-            if($carrinho[$i]->quantidade >= $precos->quantidade_desconto){
-                $carrinho[$i]->preco_un = $t->personalizada ? $precos->preco_un_proprio_desconto : $precos->preco_un_catalogo_desconto;
-                $carrinho[$i]->subtotal = $carrinho[$i]->preco_un * $t->quantidade;
-                $total += $carrinho[$i]->subtotal;
+            if($carrinho[$i]->quantidade >= $precos->qty_discount){
+                $carrinho[$i]->imagem['unit_price'] = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
+                $carrinho[$i]->sub_total = $carrinho[$i]->unit_price * $t->quantidade;
+                $total += $carrinho[$i]->sub_total;
             } else {
-                $carrinho[$i]->preco_un = $t->personalizada ? $precos->preco_un_proprio : $precos->preco_un_catalogo;
-                $carrinho[$i]->subtotal = $carrinho[$i]->preco_un * $t->quantidade;
-                $total += $carrinho[$i]->subtotal;
+                $carrinho[$i]->unit = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
+                $carrinho[$i]->sub_total = $carrinho[$i]->imagem['unit_price'] * $t->quantidade;
+                $total += $carrinho[$i]->sub_total;
             }
         }
 

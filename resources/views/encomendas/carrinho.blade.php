@@ -197,7 +197,7 @@
                             </div>
                             <div class="col"> Quantidade: {{ $tshirt->quantidade }}</div>
                             <div class="col">
-                                {{ $tshirt->quantidade . ' x ' . $tshirt->preco_un . '€ = ' . $tshirt->subtotal }}
+                                {{ $tshirt->quantidade . ' x ' . $tshirt->imagem['unit_price'] . '€ = ' . $tshirt->sub_total }}
                                 €</div>
                             <div class="col">
                                 <a

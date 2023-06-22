@@ -162,9 +162,9 @@ class TshirtController extends Controller
 
         if (session('carrinho')) {
             $tshirt = json_decode(session('carrinho'))[$index];
-            $tshirt->tshirtImage = TshirtImage::find($tshirt->tshirtImage);
 
-            // dd($tshirt);
+            $tshirt->imagem= TshirtImage::find($tshirt->imagem);
+
             return view('tshirts.editar-catalogo', ['cores' => $cores, 'tshirt' => $tshirt, 'index' => $index]);
         } else {
             return redirect()->route('carrinho')->with('erro', 'Tshirt não válida');
