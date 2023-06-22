@@ -13,7 +13,7 @@ class CategoriaStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->tipo == 'A';
+        return $this->user()->user_type == 'A';
     }
 
     /**

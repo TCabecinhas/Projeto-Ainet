@@ -23,9 +23,10 @@ class EncomendaController extends Controller
         // Admin -> Mostra todas as encomendas
         // Employee -> Mostra encomendas pendentes e pagas
         // Client -> Mostra apenas as suas encomendas
-        if(Auth::user()->tipo == 'C'){
+
+        if(Auth::user()->user_type == 'C'){
             $encomendas = Encomenda::where('customer_id', Auth::user()->id)->orderBy('date', 'DESC')->paginate(20);
-        } else if(Auth::user()->tipo == 'E'){
+        } else if(Auth::user()->user_type == 'E'){
             $encomendas = Encomenda::where('status', 'pending')->orWhere('status', 'paid')->orderBy('date', 'DESC')->paginate(20);
         } else {
             $encomendas = Encomenda::orderBy('date', 'DESC')->paginate(20);
@@ -42,9 +43,9 @@ class EncomendaController extends Controller
         $carrinho = json_decode(session('carrinho', "[]"));
         $precos = Preco::first();
 
-
+        
         $aux = $this->calcularPrecos($carrinho, $precos);
-
+        // dd($aux['carrinho']);
         return view('encomendas.carrinho', ['carrinho' => $aux['carrinho'], 'total' => $aux['total']]);
     }
 
@@ -63,6 +64,7 @@ class EncomendaController extends Controller
         $precos = Preco::first();
 
 
+
         if(!$carrinho){
             // Limpa toda a sessão para prevenir erros
             session()->forget('carrinho');
@@ -79,23 +81,23 @@ class EncomendaController extends Controller
         $encomenda->customer_id = Auth::user()->id;
         $encomenda->date = date('Y-m-d');
         $encomenda->total_price = $aux['total'];
-        $encomenda->notes = $data['notes'];
+        $encomenda->notes = $data['notas'];
         $encomenda->nif = $data['nif'];
-        $encomenda->address = $data['address'];
-        $encomenda->payment_type = $data['payment_type'];
-        $encomenda->payment_ref = $data['payment_type'] == 'PAYPAL' ? Auth::user()->email : $data['nif'];
+        $encomenda->address = $data['endereco'];
+        $encomenda->payment_type = $data['tipo_pagamento'];
+        $encomenda->payment_ref = $data['tipo_pagamento'] == 'PAYPAL' ? Auth::user()->email : $data['nif'];
         $encomenda->save();
-
+        
         // Criar tshirts
         foreach($carrinho as $t){
             $tshirt = new Tshirt();
-            $tshirt->encomenda_id = $encomenda->id;
-            $tshirt->tshirtImage_id = $t->image->id;
-            $tshirt->cor_codigo = $t->color_code;
-            $tshirt->tamanho = $t->size;
-            $tshirt->quantidade = $t->qty;
-            $tshirt->preco_un = $t->unit_price;
-            $tshirt->subtotal = $t->sub_total;
+            $tshirt->order_id = $encomenda->id;
+            $tshirt->tshirt_image_id = $t->imagem->id;
+            $tshirt->color_code = $t->cor_codigo;
+            $tshirt->size = $t->tamanho;
+            $tshirt->qty = $t->quantidade;
+            $tshirt->unit_price = $t->unit_price;
+            $tshirt->sub_total = $t->sub_total;
             $tshirt->save();
         }
 
@@ -111,6 +113,8 @@ class EncomendaController extends Controller
     private function calcularPrecos($carrinho, $precos){
         $total = 0;
 
+        // dd($precos);
+        
         foreach($carrinho as $i => $t){
             $carrinho[$i]->imagem = TshirtImage::find($t->imagem);
             // Atribuir preços unitarios e subtotais
@@ -119,12 +123,13 @@ class EncomendaController extends Controller
                 $carrinho[$i]->sub_total = $carrinho[$i]->unit_price * $t->quantidade;
                 $total += $carrinho[$i]->sub_total;
             } else {
-                $carrinho[$i]->unit = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
-                $carrinho[$i]->sub_total = $carrinho[$i]->imagem['unit_price'] * $t->quantidade;
+                $carrinho[$i]->unit_price = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
+                $carrinho[$i]->sub_total = $carrinho[$i]->unit_price * $t->quantidade;
                 $total += $carrinho[$i]->sub_total;
+                
             }
+            // dd($carrinho[$i]);
         }
-
         return ['carrinho' => $carrinho, 'total' => $total];
     }
 

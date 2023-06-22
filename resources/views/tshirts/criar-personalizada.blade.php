@@ -2,12 +2,14 @@
 
 @section('content')
     <div class="container mt-5">
-        <form action="{{ route('tshirts.adicionar-personalizada-carrinho') }}" method="POST" class="row" enctype="multipart/form-data">
+        <form action="{{ route('tshirts.adicionar-personalizada-carrinho') }}" method="POST" class="row"
+            enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="row mb-3">
                 <p><b>Preço unitário de uma tshirt personalizada: </b><u>{{ $precos->preco_un_proprio }}€</u></p>
-                <p><b>A partir de {{ $precos->quantidade_desconto}} tshirts, o preço de cada tshirt baixa para </b><u>{{ $precos->preco_un_proprio_desconto }}€</u></p>
+                <p><b>A partir de {{ $precos->quantidade_desconto }} tshirts, o preço de cada tshirt baixa para
+                    </b><u>{{ $precos->preco_un_proprio_desconto }}€</u></p>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="file-tshirtImage">Insira o ficheiro da tshirtImage:</label>
@@ -24,12 +26,13 @@
             <div class="mb-3">
                 <p>Cor T-Shirt:</p>
                 @foreach ($cores as $cor)
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="cor_codigo" id="rd-cor"
-                                    value="{{$cor->codigo}}" style="background-color: #{{$cor->codigo}};color:#{{$cor->codigo}};
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="cor_codigo" id="rd-cor"
+                            value="{{ $cor->code }}"
+                            style="background-color: #{{ $cor->code }};color:#{{ $cor->code }};
                                         height:2rem; width:2rem">
-                            </div>
-                            @endforeach
+                    </div>
+                @endforeach
             </div>
             <div class="mb-3">
                 <label for="select-tamanho" class="form-label">Tamanho:</label>
@@ -40,11 +43,12 @@
                     <option value="M">M</option>
                     <option value="L">L</option>
                     <option value="XL">XL</option>
-                  </select>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="number-quantidade" class="form-label">Quantidade:</label>
-                <input type="number" class="form-control" min="1" step="1" value="1" id="number-quantidade" name="quantidade">
+                <input type="number" class="form-control" min="1" step="1" value="1"
+                    id="number-quantidade" name="quantidade">
             </div>
             <div class="mb-3">
                 <input type="submit" value="Colocar no carrinho" class="btn btn-outline-dark">

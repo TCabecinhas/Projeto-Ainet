@@ -13,7 +13,7 @@ class EncomendasStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->tipo == "C";
+        return $this->user()->user_type == "C";
     }
 
     /**
