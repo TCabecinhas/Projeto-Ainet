@@ -30,7 +30,6 @@ class EncomendaController extends Controller
         } else {
             $encomendas = Encomenda::orderBy('date', 'DESC')->paginate(20);
         }
-
         return view('dashboard.encomendas.index', ['encomendas' => $encomendas, 'status' => $request->status ?? '']);
     }
 
@@ -44,7 +43,6 @@ class EncomendaController extends Controller
         $precos = Preco::first();
 
         $aux = $this->calcularPrecos($carrinho, $precos);
-
 
         return view('encomendas.carrinho', ['carrinho' => $aux['carrinho'], 'total' => $aux['total']]);
     }
@@ -92,11 +90,11 @@ class EncomendaController extends Controller
             $tshirt = new Tshirt();
             $tshirt->encomenda_id = $encomenda->id;
             $tshirt->tshirtImage_id = $t->image->id;
-            $tshirt->cor_codigo = $t->cor_codigo;
-            $tshirt->tamanho = $t->tamanho;
-            $tshirt->quantidade = $t->quantidade;
-            $tshirt->preco_un = $t->preco_un;
-            $tshirt->subtotal = $t->subtotal;
+            $tshirt->cor_codigo = $t->color_code;
+            $tshirt->tamanho = $t->size;
+            $tshirt->quantidade = $t->qty;
+            $tshirt->preco_un = $t->unit_price;
+            $tshirt->subtotal = $t->sub_total;
             $tshirt->save();
         }
 
