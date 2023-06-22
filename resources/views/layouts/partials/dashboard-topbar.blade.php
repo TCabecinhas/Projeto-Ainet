@@ -13,7 +13,7 @@
                 <span
                     class="mr-2 d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle"
-                    src="{{ Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
+                    src="{{ Auth::user()->photo_url ? asset('storage/photos/' . Auth::user()->photo_url) : asset('img/default_img.png') }}">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

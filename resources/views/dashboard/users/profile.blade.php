@@ -4,7 +4,7 @@
     <x-dashboard-card title="Perfil">
         <div class="mb-2 d-flex justify-content-center">
             <img class="img-thumbnail rounded-circle" width="200px"
-                                            src="{{ Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
+                                            src="{{ Auth::user()->photo_url ? asset('storage/photos/' . Auth::user()->photo_url) : asset('img/default_img.png') }}">
         </div>
         <form action="{{ route('dashboard.users.atualizar-perfil', Auth::user()) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -57,12 +57,12 @@
             @endif
 
             <button type="submit" class="btn btn-success">Alterar perfil</button>
-            @if(Auth::user()->foto_url)
+            @if(Auth::user()->photo_url)
             <button type="submit" form="form_delete_photo" class="btn btn-outline-danger">Eliminar foto de perfil</button>
             @endif
             <a href="{{ route('dashboard.index') }}" class="btn btn-outline-dark">Cancelar</a>
         </form>
-        @if(Auth::user()->foto_url)
+        @if(Auth::user()->photo_url)
             <form id="form_delete_photo" action="{{ route('users.apagar-foto', Auth::user()) }}" method="post">
                 @csrf
                 @method('DELETE')

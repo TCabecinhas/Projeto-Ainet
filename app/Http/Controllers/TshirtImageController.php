@@ -86,12 +86,12 @@ class TshirtImageController extends Controller
                 // T-Shirt image is private
                 if ($tshirtImage->customer_id) {
                     // Upload the image
-                    Storage::putFileAs('tshirtImages_private', $request->file('file'), $filename);
+                    Storage::putFileAs('tshirt_images_private', $request->file('file'), $filename);
                     // Delete the old image
-                    Storage::delete('tshirtImages_private/' . $tshirtImage->image_url);
+                    Storage::delete('tshirt_images_private/' . $tshirtImage->image_url);
                 } else {
-                    Storage::putFileAs('public/tshirtImages', $request->file('file'), $filename);
-                    Storage::delete('public/tshirtImages/' . $tshirtImage->image_url);
+                    Storage::putFileAs('public/tshirt_images', $request->file('file'), $filename);
+                    Storage::delete('public/tshirt_images/' . $tshirtImage->image_url);
                 }
 
                 $tshirtImage->image_url = $filename;

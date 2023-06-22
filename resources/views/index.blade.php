@@ -194,7 +194,7 @@
             <ol class="carousel-indicators" id="hero-carousel-indicators">
                 <li data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></li>
                 <li data-bs-target="#heroCarousel" data-bs-slide-to="1" class=""></li>
-                <li data-bs-target="#heroCarousel" data-bs-slide-to="2" class=""></li>
+                
             </ol>
             <div class="carousel-inner" role="listbox">
 
@@ -209,10 +209,7 @@
                     </div>
                 </div>
 
-                <!-- Slide 2 -->
-                <div class="carousel-item" style="background-image: url(img/t_shirt.jpg)">
-
-                </div>
+    
 
                 <!-- Slide 3 -->
                 <div class="carousel-item" style="background-image: url(img/wpshirts2.png)">

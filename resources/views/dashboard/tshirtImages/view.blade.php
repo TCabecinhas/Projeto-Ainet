@@ -4,7 +4,7 @@
     <x-dashboard-card title="Ver Imagem">
         <div class="mb-3 d-flex justify-content-center">
             <img class="img-thumbnail" width="200px"
-                src="{{ $tshirtImage->customer_id ? url('/tshirtImages/image/' . $tshirtImage->image_url) : asset('storage/tshirtImages/' . $tshirtImage->image_url) }}">
+                src="{{ $tshirtImage->customer_id ? url('/tshirt_images/image/' . $tshirtImage->image_url) : asset('storage/tshirt_images/' . $tshirtImage->image_url) }}">
         </div>
 
         <div class="form-group">

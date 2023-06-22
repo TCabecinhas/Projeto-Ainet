@@ -5,7 +5,7 @@
 
         <div class="mb-2 d-flex justify-content-center">
             <img class="img-thumbnail rounded-circle" width="200px"
-                                            src="{{ $user->foto_url ? asset('storage/fotos/' . $user->foto_url) : asset('img/default_img.png') }}">
+                                            src="{{ $user->photo_url ? asset('storage/photos/' . $user->photo_url) : asset('img/default_img.png') }}">
         </div>
 
         <div class="form-group">

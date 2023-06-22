@@ -102,8 +102,8 @@ class UserController extends Controller
 
     public function apagarFoto(User $user)
     {
-        Storage::delete('public/fotos/' . $user->foto_url);
-        $user->foto_url = null;
+        Storage::delete('public/photos/' . $user->photo_url);
+        $user->photo_url = null;
         $user->save();
         return redirect()->route('dashboard.profile')->with('success', 'A foto foi removida com sucesso!');
     }
@@ -117,18 +117,18 @@ class UserController extends Controller
         }
 
         if(isset($data['avatar'])){
-            if($user->foto_url){
+            if($user->photo_url){
                 // Eliminar foto antiga
-                Storage::delete('public/fotos/' . $user->foto_url);
-                $user->foto_url = null;
+                Storage::delete('public/photos/' . $user->photo_url);
+                $user->photo_url = null;
             }
 
             $filename = $user->id . "_" . date("Ymd_His") . "."  . $data['avatar']->extension();
 
             // Upload da nova foto
-            Storage::putFileAs('public/fotos', $data['avatar'], $filename);
+            Storage::putFileAs('public/photos', $data['avatar'], $filename);
 
-            $user->foto_url = $filename;
+            $user->photo_url = $filename;
         }
 
         $user->name = $data['name'];
