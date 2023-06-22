@@ -25,9 +25,9 @@ class DashboardController extends Controller
                 $encomendas_por_pagar = Encomenda::where('customer_id', $user->id)->where('status', 'pending')->count();
 
 
-                return view('dashboard.cliente-index', [
+                return view('dashboard.cliente-index', [                   
+                    'tshirtImages' => $tshirtImages,
                     'encomendas' => $encomendas,
-                    'images' => $tshirtImages,
                     'encomendas_finalizadas' => $encomendas_finalizadas,
                     'encomendas_em_espera' => $encomendas_em_espera,
                     'encomendas_por_pagar' => $encomendas_por_pagar,

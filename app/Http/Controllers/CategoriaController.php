@@ -22,7 +22,7 @@ class CategoriaController extends Controller
         $data = $request->validated();
 
         $categoria = new Category();
-        $categoria->nome = $data['nome'];
+        $categoria->name = $data['nome'];
         $categoria->save();
 
         return redirect()->route('dashboard.categorias.index')->with('success', 'Categoria criada com sucesso');
@@ -35,7 +35,7 @@ class CategoriaController extends Controller
     public function update(Category $categoria, CategoriaStoreRequest $request){
         $data = $request->validated();
 
-        $categoria->nome = $data['nome'];
+        $categoria->name = $data['nome'];
         $categoria->save();
 
         return redirect()->route('dashboard.categorias.index')->with('success', 'Categoria criada com sucesso');

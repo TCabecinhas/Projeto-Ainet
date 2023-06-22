@@ -15,7 +15,7 @@
                     <select name="tipo" class="custom-select">
                         <option value="*" {{ !$tipo ? 'selected' : '' }}>Todos</option>
                         <option value="A" {{ $tipo == 'A' ? 'selected' : '' }}>Administrador</option>
-                        <option value="F" {{ $tipo == 'F' ? 'selected' : '' }}>Funcionário</option>
+                        <option value="E" {{ $tipo == 'E' ? 'selected' : '' }}>Funcionário</option>
                         <option value="C" {{ $tipo == 'C' ? 'selected' : '' }}>Cliente</option>
                     </select>
                     <div class="input-group-append">

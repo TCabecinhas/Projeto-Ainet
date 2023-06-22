@@ -30,7 +30,7 @@
                 <select name="tipo" id="sel-tipo" class="form-control">
                     <option value="C">Cliente</option>
                     <option value="A">Administrador</option>
-                    <option value="F">Funcionário</option>
+                    <option value="E">Funcionário</option>
                 </select>
             </div>
 
