@@ -153,12 +153,13 @@ class EncomendaController extends Controller
         // Gerar PDF
         $recibo = $this->gerarRecibo($encomenda);
         $encomenda->receipt_url = $recibo;
+        
         $encomenda->save();
-
+        
 
         // Mandar e-mail
         if(isset($encomenda->cliente->user)){
-            Mail::to($encomenda->cliente->user)->send(new EncomendaFechada($encomenda));
+            Mail::to($encomenda->cliente->user)->send(new EncomendaFechada($encomenda['receipt_url']));
         }
 
         return redirect()->route('dashboard.encomendas.index')->with('success', 'A encomenda foi alterada para o estado "FECHADA"');

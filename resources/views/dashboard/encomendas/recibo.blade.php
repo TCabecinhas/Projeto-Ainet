@@ -48,7 +48,7 @@
                     <tr>
                         <td>
                             <img class="img-fluid img-thumbnail" width="250px"
-                                src="{{ $tshirt->tshirtImage->customer_id ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirtImages/' . $tshirt->tshirtImage->image_url) }}"
+                                src="{{ $tshirt->tshirtImage->customer_id ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirt_images/' . $tshirt->tshirtImage->image_url) }}"
                                 alt="{{ $tshirt->tshirtImage->name }}">
                         </td>
                         <td>

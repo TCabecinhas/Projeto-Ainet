@@ -30,6 +30,7 @@ class EncomendaFechada extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.fechada')->attach(storage_path('app/pdf_recibos/' . $this->encomenda->recibo_url));
+        
+        return $this->view('emails.fechada')->attach(storage_path('app/pdf_recibos/' . $this->encomenda));
     }
 }
