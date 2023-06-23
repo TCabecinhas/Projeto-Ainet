@@ -10,7 +10,7 @@
         <div class="form-group">
             <label for="txt-categoria">Categoria:</label>
             <input type="text" id="txt-categoria" class="form-control"
-                value="{{ $tshirtImage->category ? $tshirtImage->category->name : '-' }}" disabled>
+                value="{{ $tshirtImage->categoria ? $tshirtImage->categoria->name : '-' }}" disabled>
         </div>
 
         <div class="form-group">

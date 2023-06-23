@@ -168,7 +168,7 @@ class TshirtImagesSeeder extends Seeder
     ];
 
     private $tshirtImagePublicPath = 'public/tshirt_images';
-    private $tshirtImageCustomersPath = 'tshirt_images_private';
+    private $tshirtImageCustomersPath = 'public/tshirt_images_private';
 
     public function run()
     {

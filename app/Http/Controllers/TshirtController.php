@@ -33,7 +33,7 @@ class TshirtController extends Controller
         $filename = date("Ymd_His") . "." . $extension;
 
         // Upload da imagem
-        Storage::putFileAs('tshirt_images_private', $request->file('file'), $filename);
+        Storage::putFileAs('public/tshirt_images_private', $request->file('file'), $filename);
 
         $data['imagem_url'] = $filename;
         unset($data['file']);
@@ -104,10 +104,10 @@ class TshirtController extends Controller
                 $filename = date("Ymd_His") . "." . $extension;
 
                 // Upload da imagem
-                Storage::putFileAs('tshirt_images_private', $request->file('file'), $filename);
+                Storage::putFileAs('public/tshirt_images_private', $request->file('file'), $filename);
 
                 // Eliminar foto antiga
-                Storage::delete('tshirt_images_private/' . $tshirtImage->imagem_url);
+                Storage::delete('public/tshirt_images_private/' . $tshirtImage->imagem_url);
 
                 $tshirtImage->image_url = $filename;
                 $tshirtImage->save();

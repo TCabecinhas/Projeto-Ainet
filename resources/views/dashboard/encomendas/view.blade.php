@@ -183,7 +183,7 @@
                                     <div class="row main align-items-center">
                                         <div class="col-md-4">
                                             <div class="container">
-                                                <img src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirt_images/' . $tshirt->tshirtImage->image_url) }}"
+                                                <img src={{ $tshirt->tshirtImage->customer_id ? url('storage/tshirt_images_private/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirt_images/' . $tshirt->tshirtImage->image_url) }}
                                                  alt="{{ $tshirt->tshirtImage->name }}" class="imagem-2">
                                                 <img  src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->color_code . '.jpg' }}" alt="{{ $tshirt->color_code }}" class="imagem-1">
                                             </div>
@@ -211,7 +211,7 @@
         </div>
 
         @can('recibo', $order, 'App\Models\Encomenda')
-            @if ($order->status == 'fechada')
+            @if ($order->status == 'closed')
                 <a href="{{ route('dashboard.encomendas.recibo', $order) }}" class="btn btn-outline-danger">Ver recibo <i
                         class="fa fa-file-pdf"></i></a>
             @endif

@@ -2,10 +2,6 @@
 
 @section('content')
     <div class="container mt-5">
-        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
-            <img src="{{ asset('storage/tshirt_Privadas/' . $tshirt->imagem['image_url']) }}"
-                class="img-fluid w-75 h-auto" alt="{{ $tshirt->image->name }}">
-        </div>
         <form action="{{ route('tshirts.atualizar-personalizada', $index) }}" method="POST" class="row"
             enctype="multipart/form-data">
             @csrf

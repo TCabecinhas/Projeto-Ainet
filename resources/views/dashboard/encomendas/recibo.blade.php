@@ -48,8 +48,8 @@
                     <tr>
                         <td>
                             <img class="img-fluid img-thumbnail" width="250px"
-                                src="{{ $tshirt->tshirtImage->customer_id ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirt_images/' . $tshirt->tshirtImage->image_url) }}"
-                                alt="{{ $tshirt->tshirtImage->name }}">
+                                src={{ $tshirt->tshirtImage->customer_id ? url('storage/tshirt_images_private/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirt_images/' . $tshirt->tshirtImage->image_url) }}
+                                alt={{ $tshirt->tshirtImage->name }}>
                         </td>
                         <td>
                             <img class="img-fluid ml-3" width="250px"

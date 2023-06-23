@@ -197,7 +197,8 @@
                         <div class="row main align-items-center">
                             <div class="col-md-3">
                                 <div class="container">
-                                    <img src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->imagem['image_url']) : asset('storage/tshirt_images/' . $tshirt->imagem['image_url']) }}"
+                                    
+                                    <img src={{ $tshirt->imagem->customer_id ? url('storage/tshirt_images_private/' . $tshirt->imagem->image_url) : asset('storage/tshirt_images/' . $tshirt->imagem->image_url) }}
                                         alt="{{ $tshirt->imagem['name'] }}" class="imagem-2">
                                     <img src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->cor_codigo . '.jpg' }}"
                                         alt="{{ $tshirt->imagem['color_code'] }}" class="imagem-1">

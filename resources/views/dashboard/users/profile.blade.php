@@ -42,16 +42,16 @@
 
                 <div class="form-group">
                     <label for="txt-endereco">Morada:</label>
-                    <input type="text" class="form-control" name="endereco" id="txt-endereco" aria-describedby="endereco" value="{{ isset(Auth::user()->cliente->endereco) ? Auth::user()->cliente->endereco : '' }}">
+                    <input type="text" class="form-control" name="endereco" id="txt-endereco" aria-describedby="endereco" value="{{ isset(Auth::user()->cliente->address) ? Auth::user()->cliente->address : '' }}">
                 </div>
 
                 <div class="form-group">
                     <label for="select-tipo_pagamento">Método de pagamento:</label>
                     <select class="form-control" name="tipo_pagamento" id="txt-tipo_pagamento" aria-describedby="tipo_pagamento">
-                        <option {{ !isset(Auth::user()->cliente->tipo_pagamento) ? 'selected' : ''}}></option>
-                        <option value="VISA" {{ isset(Auth::user()->cliente->tipo_pagamento) && Auth::user()->cliente->tipo_pagamento == 'VISA' ? 'selected' : '' }}>VISA</option>
-                        <option value="MC" {{ isset(Auth::user()->cliente->tipo_pagamento) && Auth::user()->cliente->tipo_pagamento == 'MC' ? 'selected' : '' }}>MC</option>
-                        <option value="PAYPAL" {{ isset(Auth::user()->cliente->tipo_pagamento) && Auth::user()->cliente->tipo_pagamento == 'PAYPAL' ? 'selected' : '' }}>PAYPAL</option>
+                        <option {{ !isset(Auth::user()->cliente->default_payment_type) ? 'selected' : ''}}></option>
+                        <option value="VISA" {{ isset(Auth::user()->cliente->default_payment_type) && Auth::user()->cliente->default_payment_type == 'VISA' ? 'selected' : '' }}>VISA</option>
+                        <option value="MC" {{ isset(Auth::user()->cliente->default_payment_type) && Auth::user()->cliente->default_payment_type == 'MC' ? 'selected' : '' }}>MC</option>
+                        <option value="PAYPAL" {{ isset(Auth::user()->cliente->default_payment_type) && Auth::user()->cliente->default_payment_type == 'PAYPAL' ? 'selected' : '' }}>PAYPAL</option>
                     </select>
                 </div>
             @endif
