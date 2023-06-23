@@ -7,9 +7,11 @@
             @csrf
             @method('POST')
             <div class="row mb-3">
-                <p><b>Preço unitário de uma tshirt personalizada: </b><u>{{ $precos->preco_un_proprio }}€</u></p>
-                <p><b>A partir de {{ $precos->quantidade_desconto }} tshirts, o preço de cada tshirt baixa para
-                    </b><u>{{ $precos->preco_un_proprio_desconto }}€</u></p>
+                {{-- {{ dd($precos) }} --}}
+                <p><b>Preço unitário de uma tshirt personalizada: </b><u>{{ $precos->unit_price_own }}€</u></p>
+                <p><b>A partir de {{ $precos->qty_discount }} tshirts, o preço de cada tshirt baixa para
+                    </b><u>{{ $precos->unit_price_own_discount }}€</u></p>
+                <input value={{ $precos->unit_price_own }} class="form-control" type="hidden" id="preco" name="preco">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="file-tshirtImage">Insira o ficheiro da tshirtImage:</label>

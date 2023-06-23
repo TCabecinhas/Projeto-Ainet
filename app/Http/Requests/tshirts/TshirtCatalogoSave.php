@@ -26,6 +26,7 @@ class TshirtCatalogoSave extends FormRequest
         return [
             'cor_codigo' => 'required|exists:colors,code',
             'tamanho' => 'required|in:XS,S,M,L,XL',
+            'preco' => 'required|numeric|min:0.00',
             'quantidade' => 'required|integer|min:1'
         ];
     }

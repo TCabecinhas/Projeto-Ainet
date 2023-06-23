@@ -75,6 +75,8 @@
                                             </option>
                                         </select>
                                     </div>
+                                    <input value={{ $tshirt->preco }} class="form-control" type="hidden" id="preco"
+                                        name="preco">
                                     <div class="row mt-4">
                                         <button type="submit" class="btn btn-lg btn-block btn-outline-dark">
                                             <i class="fa fa-shopping-cart carrinho"></i> Adicionar ao Carrinho</button>

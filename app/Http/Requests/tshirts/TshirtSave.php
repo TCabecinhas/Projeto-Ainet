@@ -19,7 +19,8 @@ class TshirtSave extends FormRequest
             'quantidade' => 'required|integer|min:1',
             'nome' => 'required|max:255',
             'descricao' => 'nullable',
-            'file' => 'required|image|file'
+            'file' => 'required|image|file',
+            'preco' => 'required|numeric|min:0.00'
         ];
     }
 

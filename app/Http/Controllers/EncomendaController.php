@@ -10,6 +10,7 @@ use App\Models\TshirtImage;
 use App\Models\Preco;
 use App\Models\Tshirt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -63,7 +64,7 @@ class EncomendaController extends Controller
         $carrinho = json_decode(session('carrinho', "[]"));
         $precos = Preco::first();
 
-
+        
 
         if(!$carrinho){
             // Limpa toda a sessão para prevenir erros
@@ -72,6 +73,7 @@ class EncomendaController extends Controller
             // Retorna erro
             return redirect()->route('carrinho')->with('erro', 'ERRO: Não foi possível efetuar encomenda!');
         }
+
 
         $aux = $this->calcularPrecos($carrinho, $precos);
 
@@ -88,6 +90,8 @@ class EncomendaController extends Controller
         $encomenda->payment_ref = $data['tipo_pagamento'] == 'PAYPAL' ? Auth::user()->email : $data['nif'];
         $encomenda->save();
         
+        // dd($carrinho);
+
         // Criar tshirts
         foreach($carrinho as $t){
             $tshirt = new Tshirt();
@@ -96,7 +100,7 @@ class EncomendaController extends Controller
             $tshirt->color_code = $t->cor_codigo;
             $tshirt->size = $t->tamanho;
             $tshirt->qty = $t->quantidade;
-            $tshirt->unit_price = $t->unit_price;
+            $tshirt->unit_price = $t->imagem['unit_price'];
             $tshirt->sub_total = $t->sub_total;
             $tshirt->save();
         }
@@ -113,35 +117,38 @@ class EncomendaController extends Controller
     private function calcularPrecos($carrinho, $precos){
         $total = 0;
 
-        // dd($precos);
+        // dd($carrinho);
         
-        foreach($carrinho as $i => $t){
-            $carrinho[$i]->imagem = TshirtImage::find($t->imagem);
+        foreach($carrinho as $i => &$t){
+            
+            $t->imagem = TshirtImage::find($t->imagem);
+            // dd($t->imagem);
             // Atribuir preços unitarios e subtotais
-            if($carrinho[$i]->quantidade >= $precos->qty_discount){
-                $carrinho[$i]->imagem['unit_price'] = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
-                $carrinho[$i]->sub_total = $carrinho[$i]->unit_price * $t->quantidade;
-                $total += $carrinho[$i]->sub_total;
+            if($t->quantidade >= $precos->qty_discount){
+                $t->imagem['unit_price'] = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
+                $t->sub_total = $t->imagem['unit_price'] * $t->quantidade;
+                $total += $t->sub_total;
             } else {
-                $carrinho[$i]->unit_price = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
-                $carrinho[$i]->sub_total = $carrinho[$i]->unit_price * $t->quantidade;
-                $total += $carrinho[$i]->sub_total;
+                $t->imagem['unit_price'] = $t->personalizada ? $precos->unit_price_own_discount : $precos->unit_price_catalog_discount;
+                $t->sub_total = $t->imagem['unit_price'] * $t->quantidade;
+                $total += $t->sub_total;
                 
             }
             // dd($carrinho[$i]);
         }
+        unset($t);
         return ['carrinho' => $carrinho, 'total' => $total];
     }
 
     public function pay(Encomenda $encomenda){
-        $encomenda->status = 'paid';
+        $encomenda->estado = 'paid';
         $encomenda->save();
 
         return redirect()->route('dashboard.encomendas.index')->with('success', 'A encomenda foi alterada para o estado "PAGA"');
     }
 
     public function close(Encomenda $encomenda){
-        $encomenda->status = 'closed';
+        $encomenda->estado = 'closed';
 
         // Gerar PDF
         $recibo = $this->gerarRecibo($encomenda);
@@ -158,7 +165,7 @@ class EncomendaController extends Controller
     }
 
     public function cancel(Encomenda $encomenda){
-        $encomenda->status = 'canceled';
+        $encomenda->estado = 'canceled';
         $encomenda->save();
 
         return redirect()->route('dashboard.encomendas.index')->with('success', 'A encomenda foi alterada para o estado "ANULADA"');

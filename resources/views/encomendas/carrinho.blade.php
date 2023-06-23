@@ -2,7 +2,6 @@
 
 @push('css')
     <style>
-
         .container {
             position: relative;
         }
@@ -199,8 +198,9 @@
                             <div class="col-md-3">
                                 <div class="container">
                                     <img src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->imagem['image_url']) : asset('storage/tshirt_images/' . $tshirt->imagem['image_url']) }}"
-                                     alt="{{ $tshirt->imagem['name'] }}" class="imagem-2">
-                                    <img  src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->cor_codigo . '.jpg' }}" alt="{{ $tshirt->imagem['color_code'] }}" class="imagem-1">
+                                        alt="{{ $tshirt->imagem['name'] }}" class="imagem-2">
+                                    <img src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->cor_codigo . '.jpg' }}"
+                                        alt="{{ $tshirt->imagem['color_code'] }}" class="imagem-1">
                                 </div>
                             </div>
                             <div class="col">
@@ -215,7 +215,7 @@
                             <div class="col"> Quantidade: {{ $tshirt->quantidade }}</div>
                             <div class="col">
                                 {{-- {{ dd($tshirt) }} --}}
-                                {{ $tshirt->quantidade . ' x ' . $tshirt->unit_price . '€ = ' . $tshirt->sub_total }}
+                                {{ $tshirt->quantidade . ' x ' . $tshirt->imagem['unit_price'] . '€ = ' . $tshirt->sub_total }}
                                 €</div>
                             <div class="col">
                                 <a

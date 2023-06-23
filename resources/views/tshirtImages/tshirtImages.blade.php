@@ -92,6 +92,8 @@
                                 </p>
                                 <p><b>A partir de {{ $prices->qty_discount }} tshirts, o preço de cada tshirt
                                         baixa para </b><u>{{ $prices->unit_price_catalog_discount }}€</u></p>
+                                <input value={{ $prices->unit_price_own }} class="form-control" type="hidden"
+                                    id="preco" name="preco">
                             </div>
                             </form>
                         </div>

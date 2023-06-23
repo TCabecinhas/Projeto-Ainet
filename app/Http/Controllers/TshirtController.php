@@ -26,6 +26,8 @@ class TshirtController extends Controller
         // Valida se os campos estão preenchidos
         $data = $request->validated();
 
+        // dd($data);
+
         // Formato do nome do ficheiro
         $extension = $request->file('file')->extension();
         $filename = date("Ymd_His") . "." . $extension;
@@ -45,19 +47,22 @@ class TshirtController extends Controller
         $tshirtImage->image_url = $filename;
         $tshirtImage->save();
 
+
+
         $info_carrinho = [
             'imagem' => $tshirtImage->id,
             'personalizada' => true,
             'cor_codigo' => $data['cor_codigo'],
             'tamanho' => $data['tamanho'],
-            'quantidade' => $data['quantidade']
+            'quantidade' => $data['quantidade'],
+            'preco' => $data['preco']
         ];
-
 
         // Adiciona tshirt personalizada ao array do carrinho (presente na sessão do browser)
         if (session('carrinho')) {
-            $carrinho =  json_decode(session('carrinho'));
+            $carrinho =  json_decode(session('carrinho'), true);
         }
+
 
         $carrinho[] = $info_carrinho;
 
@@ -72,7 +77,9 @@ class TshirtController extends Controller
 
         if (session('carrinho')) {
             $tshirt = json_decode(session('carrinho'))[$index];
-            $tshirt->tshirtImage = TshirtImage::find($tshirt->tshirtImage);
+            // dd($tshirt);
+            $tshirt->tshirtImage = TshirtImage::find($tshirt->imagem);
+
             return view('tshirts.editar-personalizada', ['cores' => $cores, 'tshirt' => $tshirt, 'index' => $index]);
         } else {
             return redirect()->route('carrinho')->with('erro', 'Tshirt não válida');
@@ -102,7 +109,7 @@ class TshirtController extends Controller
                 // Eliminar foto antiga
                 Storage::delete('tshirt_images_private/' . $tshirtImage->imagem_url);
 
-                $tshirtImage->imagem_url = $filename;
+                $tshirtImage->image_url = $filename;
                 $tshirtImage->save();
             }
         }
@@ -141,13 +148,14 @@ class TshirtController extends Controller
     public function adicionarCatalogoCarrinho(TshirtImage $tshirtImage, TshirtCatalogoSave $request)
     {
         $data = $request->validated();
+        // dd($data);
 
         $data['imagem'] = $tshirtImage->id;
         $data['personalizada'] = false;
 
         // Adiciona tshirt personalizada ao array do carrinho (presente na sessão do browser)
         if (session('carrinho')) {
-            $carrinho =  json_decode(session('carrinho'));
+            $carrinho =  json_decode(session('carrinho'), true);
         }
 
         $carrinho[] = $data;
