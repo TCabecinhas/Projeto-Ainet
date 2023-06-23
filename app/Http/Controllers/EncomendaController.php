@@ -141,18 +141,18 @@ class EncomendaController extends Controller
     }
 
     public function pay(Encomenda $encomenda){
-        $encomenda->estado = 'paid';
+        $encomenda->status = 'paid';
         $encomenda->save();
 
         return redirect()->route('dashboard.encomendas.index')->with('success', 'A encomenda foi alterada para o estado "PAGA"');
     }
 
     public function close(Encomenda $encomenda){
-        $encomenda->estado = 'closed';
+        $encomenda->status = 'closed';
 
         // Gerar PDF
         $recibo = $this->gerarRecibo($encomenda);
-        $encomenda->recibo_url = $recibo;
+        $encomenda->receipt_url = $recibo;
         $encomenda->save();
 
 
@@ -165,7 +165,7 @@ class EncomendaController extends Controller
     }
 
     public function cancel(Encomenda $encomenda){
-        $encomenda->estado = 'canceled';
+        $encomenda->status = 'canceled';
         $encomenda->save();
 
         return redirect()->route('dashboard.encomendas.index')->with('success', 'A encomenda foi alterada para o estado "ANULADA"');
@@ -183,6 +183,6 @@ class EncomendaController extends Controller
     }
 
     public function recibo(Encomenda $encomenda){
-        return Storage::download('pdf_recibos/'. $encomenda->recibo_url);
+        return Storage::download('pdf_recibos/'. $encomenda->receipt_url);
     }
 }

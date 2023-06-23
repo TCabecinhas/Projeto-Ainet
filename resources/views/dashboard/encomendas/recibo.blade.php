@@ -19,16 +19,16 @@
         <div class="mb-3">
             <p><b>Cliente:</b>
                 {{ isset($encomenda->cliente->user) ? $encomenda->cliente->user->name : '(utilizador removido)' }}</p>
-            <p><b>Data:</b> {{ $encomenda->data }}</p>
-            <p><b>Total:</b> {{ $encomenda->preco_total }}€</p>
+            <p><b>Data:</b> {{ $encomenda->date }}</p>
+            <p><b>Total:</b> {{ $encomenda->total_price }}€</p>
             <p><b>NIF:</b> {{ $encomenda->nif }}</p>
-            <p><b>Endereço:</b> {{ $encomenda->endereco }}</p>
+            <p><b>Endereço:</b> {{ $encomenda->address }}</p>
 
-            @if ($encomenda->notas)
-                <p><b>Notas:</b> {{ $encomenda->notas }}</p>
+            @if ($encomenda->notes)
+                <p><b>Notas:</b> {{ $encomenda->notes }}</p>
             @endif
 
-            <p><b>Método de pagamento:</b> {{ $encomenda->tipo_pagamento }}</p>
+            <p><b>Método de pagamento:</b> {{ $encomenda->payment_type }}</p>
         </div>
 
 
@@ -48,17 +48,17 @@
                     <tr>
                         <td>
                             <img class="img-fluid img-thumbnail" width="250px"
-                                src="{{ $tshirt->tshirtImage->cliente_id ? url('/tshirtImages/image/' . $tshirt->tshirtImage->imagem_url) : asset('storage/tshirtImages/' . $tshirt->tshirtImage->imagem_url) }}"
-                                alt="{{ $tshirt->tshirtImage->nome }}">
+                                src="{{ $tshirt->tshirtImage->customer_id ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirtImages/' . $tshirt->tshirtImage->image_url) }}"
+                                alt="{{ $tshirt->tshirtImage->name }}">
                         </td>
                         <td>
                             <img class="img-fluid ml-3" width="250px"
-                                src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->cor_codigo . '.jpg' }}"
-                                alt="{{ $tshirt->cor_codigo }}">
+                                src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->color_code . '.jpg' }}"
+                                alt="{{ $tshirt->color_code }}">
                         </td>
-                        <td>{{ $tshirt->tamanho }}</td>
-                        <td>{{ $tshirt->quantidade }}</td>
-                        <td>{{ $tshirt->preco_un }} x {{ $tshirt->quantidade }} = {{ $tshirt->subtotal }}</td>
+                        <td>{{ $tshirt->size }}</td>
+                        <td>{{ $tshirt->qty }}</td>
+                        <td>{{ $tshirt->unit_price }} x {{ $tshirt->qty }} = {{ $tshirt->sub_total }}</td>
                     </tr>
                 @endforeach
             </tbody>

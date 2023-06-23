@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Cores\CorStoreRequest;
 use App\Models\Cor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CorController extends Controller
 {
@@ -20,7 +21,9 @@ class CorController extends Controller
 
     public function update(Cor $cor, CorStoreRequest $request){
         $data = $request->validated();
-        $cor->fill($data);
+
+        $cor->name=$data['nome'];
+        $cor->code=$data['codigo'];
         $cor->save();
 
         return redirect()->route('dashboard.cores.index')->with('success', 'A cor foi atualizada com sucesso');

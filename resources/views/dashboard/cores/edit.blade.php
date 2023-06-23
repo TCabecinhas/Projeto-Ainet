@@ -8,17 +8,18 @@
             <div class="form-group">
                 <label for="txt-codigo">Codigo:</label>
                 <input type="text" class="form-control" name="codigo" id="txt-codigo" aria-describedby="codigo"
-                    value="{{ $cor->code }}">
+                    value="{{ $cor->code }}" readonly>
             </div>
-
+        
             <div class="form-group">
                 <label for="txt-nome">Nome:</label>
                 <input type="text" class="form-control" name="nome" id="txt-email" aria-describedby="nome"
                     value="{{ $cor->name }}">
             </div>
-
+        
             <button type="submit" class="btn btn-success">Alterar Cor</button>
             <a href="{{ route('dashboard.cores.index') }}" class="btn btn-outline-dark">Cancelar</a>
         </form>
+        
     </x-dashboard-card>
 @endsection
