@@ -24,7 +24,7 @@
                         <td>{{ $e->total_price }}€</td>
                         <td>{{ $e->payment_type }}</td>
                         <td>
-                            @if ($e->status == 'pendent')
+                            @if ($e->status == 'pending')
                                 @can('pay', $e, App\Models\Encomenda::class)
                                     <button type="submit" form="form_pay_{{ $e->id }}" class="btn btn-sm btn-outline-dark"
                                         data-toggle="tooltip" data-placement="top" title="Pagar Encomenda"><i
