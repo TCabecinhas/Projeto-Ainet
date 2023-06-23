@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $tshirtImage->id }}</td>
                         <td>{{ $tshirtImage->name }}</td>
-                        <td>{{ $tshirtImage->category ? $tshirtImage->category->name : '-' }}</td>
+                        <td>{{ $tshirtImage->categoria ? $tshirtImage->categoria->name : '-' }}</td>
                         <td>
                             {{-- Restaurar --}}
                             <button type="submit" class="btn btn-sm btn-outline-dark"

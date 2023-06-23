@@ -34,8 +34,8 @@ class CorController extends Controller
         $data = $request->validated();
 
         $cor = new Cor();
-        $cor->codigo = $data['codigo'];
-        $cor->nome = $data['nome'];
+        $cor->code = $data['codigo'];
+        $cor->name = $data['nome'];
         $cor->save();
 
         return redirect()->route('dashboard.cores.index')->with('success', 'A cor foi criada com sucesso');

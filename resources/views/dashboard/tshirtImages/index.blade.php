@@ -5,7 +5,7 @@
         <div class="mb-3">
             <a href="{{ route('dashboard.tshirtImages.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nova
                 Imagem de Tshirt</a>
-            <a href="{{ route('dashboard.tshirtImages.apagadas') }}" class="btn btn-outline-dark"><i class="fa fa-recycle"></i>
+            <a href="{{ route('dashboard.tshirtImages.deleted') }}" class="btn btn-outline-dark"><i class="fa fa-recycle"></i>
                 Imagens de Tshirt Apagadas</a>
         </div>
         <table class="table table-responsive-md table-responsive-sm table-hover table-bordered text-center">

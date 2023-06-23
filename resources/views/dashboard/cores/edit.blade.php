@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label for="txt-nome">Nome:</label>
                 <input type="text" class="form-control" name="nome" id="txt-email" aria-describedby="nome"
-                    value="{{ $cor->nome }}">
+                    value="{{ $cor->name }}">
             </div>
 
             <button type="submit" class="btn btn-success">Alterar Cor</button>

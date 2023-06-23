@@ -83,7 +83,7 @@ class UserController extends Controller
         $data = $request->validated();
 
         // Caso se altere o utilizador para 'cliente', criar o registo de cliente
-        if($data['tipo'] == 'C' && $user->user_type != 'C' && !Cliente::where('id', $user->id)->exists()){
+        if($data['user_type'] == 'C' && $user->user_type != 'C' && !Cliente::where('id', $user->id)->exists()){
             $cliente = new Cliente();
             $cliente->id = $user->id;
             $cliente->save();
@@ -136,7 +136,7 @@ class UserController extends Controller
         if($user->user_type == 'C'){
 
             $user->cliente->nif = $data['nif'];
-            $user->cliente->endereco = $data['endereco'];
+            $user->cliente->address = $data['endereco'];
 
             // Alterar tipo_pagamento e ref_pagamento
             if($data['tipo_pagamento'] == 'PAYPAL'){

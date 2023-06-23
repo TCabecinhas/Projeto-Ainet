@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/tshirtImages', [TshirtImageController::class, 'index'])->name('dashboard.tshirtImages.index');
     Route::get('/dashboard/tshirtImages/create', [TshirtImageController::class, 'create'])->name('dashboard.tshirtImages.create');
     Route::post('/dashboard/tshirtImages/', [TshirtImageController::class, 'store'])->name('dashboard.tshirtImages.store');
-    Route::get('/dashboard/tshirtImages/apagadas', [TshirtImageController::class, 'apagadas'])->name('dashboard.tshirtImages.apagadas');
+    Route::get('/dashboard/tshirtImages/deleted', [TshirtImageController::class, 'deleted'])->name('dashboard.tshirtImages.deleted');
     Route::get('/dashboard/tshirtImages/{tshirtImage}', [TshirtImageController::class, 'view'])->name('dashboard.tshirtImages.view');
     Route::get('/dashboard/tshirtImages/edit/{tshirtImage}', [TshirtImageController::class, 'edit'])->name('dashboard.tshirtImages.edit');
     Route::put('/dashboard/tshirtImages/{tshirtImage}', [TshirtImageController::class, 'update'])->name('dashboard.tshirtImages.update');
