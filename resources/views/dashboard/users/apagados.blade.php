@@ -24,7 +24,7 @@
                         <td>{{ $u->id }}</td>
                         <td>{{ $u->name }}</td>
                         <td>{{ $u->email }}</td>
-                        <td>{{ $u->tipo == 'C' ? 'Cliente' : ($u->tipo == 'A' ? 'Administrador' : 'Funcionário') }}</td>
+                        <td>{{ $u->user_type == 'C' ? 'Cliente' : ($u->user_type == 'A' ? 'Administrador' : 'Funcionário') }}</td>
                         <td>{{ $u->blocked ? 'Sim' : 'Não'}}</td>
                         <td>{{ date('Y-m-d', strtotime($u->deleted_at)) }}</td>
                         <td>

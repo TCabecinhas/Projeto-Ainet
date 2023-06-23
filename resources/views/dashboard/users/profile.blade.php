@@ -34,7 +34,7 @@
                 <input type="password" class="form-control" name="password_confirmation" id="txt-password" aria-describedby="confirm-password">
             </div>
 
-            @if(Auth::user()->tipo == 'C')
+            @if(Auth::user()->user_type == 'C')
                 <div class="form-group">
                     <label for="txt-nif">NIF:</label>
                     <input type="text" class="form-control" name="nif" id="txt-nif" aria-describedby="nif" value="{{ isset(Auth::user()->cliente->nif) ? Auth::user()->cliente->nif : '' }}">

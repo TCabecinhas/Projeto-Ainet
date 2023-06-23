@@ -31,7 +31,7 @@ class TshirtController extends Controller
         $filename = date("Ymd_His") . "." . $extension;
 
         // Upload da imagem
-        Storage::putFileAs('images_privadas', $request->file('file'), $filename);
+        Storage::putFileAs('tshirt_images_private', $request->file('file'), $filename);
 
         $data['imagem_url'] = $filename;
         unset($data['file']);
@@ -39,10 +39,10 @@ class TshirtController extends Controller
 
         // Criar imagem
         $tshirtImage = new TshirtImage();
-        $tshirtImage->cliente_id = Auth::user()->id;
-        $tshirtImage->nome = $data['nome'];
-        $tshirtImage->descricao = $data['descricao'];
-        $tshirtImage->imagem_url = $filename;
+        $tshirtImage->customer_id = Auth::user()->id;
+        $tshirtImage->name = $data['nome'];
+        $tshirtImage->description = $data['descricao'];
+        $tshirtImage->image_url = $filename;
         $tshirtImage->save();
 
         $info_carrinho = [
@@ -97,10 +97,10 @@ class TshirtController extends Controller
                 $filename = date("Ymd_His") . "." . $extension;
 
                 // Upload da imagem
-                Storage::putFileAs('images_privadas', $request->file('file'), $filename);
+                Storage::putFileAs('tshirt_images_private', $request->file('file'), $filename);
 
                 // Eliminar foto antiga
-                Storage::delete('images_privadas/' . $tshirtImage->imagem_url);
+                Storage::delete('tshirt_images_private/' . $tshirtImage->imagem_url);
 
                 $tshirtImage->imagem_url = $filename;
                 $tshirtImage->save();

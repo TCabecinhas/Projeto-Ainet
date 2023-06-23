@@ -16,14 +16,18 @@ class TshirtImageController extends Controller
 {
     public function index()
     {
-        
+        $tshirtImages = TshirtImage::where('customer_id', NULL)->orderBy('created_at', 'DESC')->paginate(20);
+
+        return view('dashboard.tshirtImages.index', ['tshirtImages' => $tshirtImages]);
+
+        /*
         $tshirtImages = DB::table('tshirt_images')
         ->select('tshirt_images.*', 'categories.name as category_name')
         ->where('customer_id', NULL)
         ->join('categories', 'tshirt_images.category_id', '=', 'categories.id')
         ->orderBy('created_at', 'DESC')
         ->paginate(20);
-        return view('dashboard.tshirtImages.index', ['tshirtImages' => $tshirtImages]);
+        return view('dashboard.tshirtImages.index', ['tshirtImages' => $tshirtImages]);*/
     }
 
     public function create()
@@ -32,6 +36,8 @@ class TshirtImageController extends Controller
 
         return view('dashboard.tshirtImages.create', ['categories' => $categories]);
     }
+
+
 
     public function store(TshirtImageStoreRequest $request)
     {
@@ -45,7 +51,7 @@ class TshirtImageController extends Controller
                 $filename = date("Ymd_His") . "." . $extension;
 
                 // Upload the image
-                Storage::putFileAs('public/tshirtImages', $request->file('file'), $filename);
+                Storage::putFileAs('public/tshirt_images', $request->file('file'), $filename);
 
                 $data['image_url'] = $filename;
                 $tshirtImage = new TshirtImage();
@@ -157,6 +163,6 @@ class TshirtImageController extends Controller
 
     public function getFile($path)
     {
-        return response()->file(storage_path('app/tshirtImages_private/' . $path));
+        return response()->file(storage_path('app/tshirt_images_private/' . $path));
     }
 }

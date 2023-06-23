@@ -2,6 +2,24 @@
 
 @push('css')
     <style>
+
+        .container {
+            position: relative;
+        }
+
+        .imagem-1 {
+            position: relative;
+            z-index: 1;
+            width: 150px !important;
+        }
+
+        .imagem-2 {
+            position: absolute;
+            top: 30px;
+            left: 70px;
+            z-index: 2;
+        }
+
         .img-box img {
             /* float: left; */
             width: auto;
@@ -179,12 +197,11 @@
                     <div class="row border-top border-bottom">
                         <div class="row main align-items-center">
                             <div class="col-md-3">
-                                <img class="img-fluid" height="150px"
-                                    src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->imagem['image_url']) : asset('storage/tshirt_images/' . $tshirt->imagem['image_url']) }}"
-                                    alt="{{ $tshirt->imagem['name'] }}">
-                                <img class="img-fluid ml-3" height="150px"
-                                    src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->cor_codigo . '.jpg' }}"
-                                    alt="{{ $tshirt->imagem['color_code'] }}">
+                                <div class="container">
+                                    <img src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->imagem['image_url']) : asset('storage/tshirt_images/' . $tshirt->imagem['image_url']) }}"
+                                     alt="{{ $tshirt->imagem['name'] }}" class="imagem-2">
+                                    <img  src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->cor_codigo . '.jpg' }}" alt="{{ $tshirt->imagem['color_code'] }}" class="imagem-1">
+                                </div>
                             </div>
                             <div class="col">
                                 <div class="row text-muted">

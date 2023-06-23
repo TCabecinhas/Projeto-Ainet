@@ -2,6 +2,25 @@
 
 @push('css')
     <style>
+
+        .container {
+            position: relative;
+        }
+
+        .imagem-1 {
+            position: relative;
+            z-index: 1;
+            width: 150px !important;
+        }
+
+        .imagem-2 {
+            position: absolute;
+            width: 70px !important;
+            top: 30px;
+            left: 65px;
+            z-index: 2;
+        }
+
         .accordion .img-box img {
             /* float: left; */
             width: auto;
@@ -163,12 +182,11 @@
                                 <div class="row border-top border-bottom">
                                     <div class="row main align-items-center">
                                         <div class="col-md-4">
-                                            <img class="img-fluid img-thumbnail" width="150px"
-                                                src="{{ $tshirt->tshirtImage->customer_id ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirtImages/' . $tshirt->tshirtImage->image_url) }}"
-                                                alt="{{ $tshirt->tshirtImage->name }}">
-                                            <img class="img-fluid ml-3" width="150px"
-                                                src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->color_code . '.jpg' }}"
-                                                alt="{{ $tshirt->color_code }}">
+                                            <div class="container">
+                                                <img src="{{ $tshirt->personalizada ? url('/tshirtImages/image/' . $tshirt->tshirtImage->image_url) : asset('storage/tshirt_images/' . $tshirt->tshirtImage->image_url) }}"
+                                                 alt="{{ $tshirt->tshirtImage->name }}" class="imagem-2">
+                                                <img  src="{{ asset('storage/tshirt_base/') . '/' . $tshirt->color_code . '.jpg' }}" alt="{{ $tshirt->color_code }}" class="imagem-1">
+                                            </div>
                                         </div>
                                         <div class="col">
                                             <div class="row text-muted d-flex flex-column">

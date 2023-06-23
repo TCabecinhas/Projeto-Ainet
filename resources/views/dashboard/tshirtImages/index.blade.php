@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ $tshirtImage->id }}</td>
                         <td>{{ $tshirtImage->name }}</td>
-                        <td>{{ $tshirtImage->category_name ? $tshirtImage->category_name : '-' }}</td>
+                        <td>{{ $tshirtImage->categoria ? $tshirtImage->categoria->name : '-' }}</td>
                         <td>
                             {{-- Ver --}}
                             <a href="{{ route('dashboard.tshirtImages.view', $tshirtImage->id) }}"

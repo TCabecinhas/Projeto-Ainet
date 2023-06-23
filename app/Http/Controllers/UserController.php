@@ -20,12 +20,12 @@ class UserController extends Controller
 
     public function index(Request $request){
 
-        $tipo = $request->query('tipo') == '*' ? null :$request->query('tipo') ;
-        $conditions = $tipo ? ["tipo" => $tipo] : [];
+        $tipo = $request->query('user_type') == '*' ? null :$request->query('user_type') ;
+        $conditions = $tipo ? ["user_type" => $tipo] : [];
 
         $users = User::where($conditions)->paginate(20);
 
-        return view('dashboard.users.index', ['users' => $users, 'tipo' => $tipo]);
+        return view('dashboard.users.index', ['users' => $users, 'user_type' => $tipo]);
     }
 
     public function view(User $user){

@@ -12,11 +12,11 @@
         <div class="mb-3">
             <form action="{{ route('dashboard.users.index') }}" method="get" class="form-group">
                 <div class="input-group mb-3">
-                    <select name="tipo" class="custom-select">
-                        <option value="*" {{ !$tipo ? 'selected' : '' }}>Todos</option>
-                        <option value="A" {{ $tipo == 'A' ? 'selected' : '' }}>Administrador</option>
-                        <option value="E" {{ $tipo == 'E' ? 'selected' : '' }}>Funcionário</option>
-                        <option value="C" {{ $tipo == 'C' ? 'selected' : '' }}>Cliente</option>
+                    <select name="user_type" class="custom-select">
+                        <option value="*" {{ !$user_type ? 'selected' : '' }}>Todos</option>
+                        <option value="A" {{ $user_type == 'A' ? 'selected' : '' }}>Administrador</option>
+                        <option value="E" {{ $user_type == 'E' ? 'selected' : '' }}>Funcionário</option>
+                        <option value="C" {{ $user_type == 'C' ? 'selected' : '' }}>Cliente</option>
                     </select>
                     <div class="input-group-append">
                         <input type="submit" value="Filtrar" class="btn btn-outline-dark">
@@ -42,7 +42,7 @@
                         <td>{{ $u->id }}</td>
                         <td>{{ $u->name }}</td>
                         <td>{{ $u->email }}</td>
-                        <td>{{ $u->tipo == 'C' ? 'Cliente' : ($u->tipo == 'A' ? 'Administrador' : 'Funcionário') }}</td>
+                        <td>{{ $u->user_type == 'C' ? 'Cliente' : ($u->user_type == 'A' ? 'Administrador' : 'Funcionário') }}</td>
                         <td>{{ $u->blocked ? 'Sim' : 'Não' }}</td>
                         <td>
                             {{-- Ver --}}
@@ -50,7 +50,7 @@
                                     class="fa fa-eye"></i></a>
 
                             {{-- Editar --}}
-                            @if ($u->tipo != 'C')
+                            @if ($u->user_type != 'C')
                                 <a href="{{ route('dashboard.users.edit', $u) }}"
                                     class="btn btn-sm btn-outline-warning"><i class="fa fa-pencil-alt"></i></a>
                             @endif
